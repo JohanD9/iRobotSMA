@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface ITypeDeServiceTest {
+public interface ITypeDeServiceServer {
 	public boolean serviceContraire(boolean b);
 }

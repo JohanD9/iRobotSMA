@@ -1,8 +1,12 @@
-import interfaces.ITypeDeServiceTest
+import interfaces.ITypeDeServiceServer
 
 namespace test {
 	
-	component TestComponentType {
-		provides unServiceTest : ITypeDeServiceTest
+	component ComponentServerType {
+		provides nomPortServiceContraire : ITypeDeServiceServer
 	}
+	
+	/*component ComponentClient {
+		requires inverse : ITypeDeServiceServer
+	}*/
 }
