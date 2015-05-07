@@ -1,0 +1,8 @@
+import interfaces.ITypeDeServiceTest
+
+namespace test {
+	
+	component TestComponentType {
+		provides unServiceTest : ITypeDeServiceTest
+	}
+}
