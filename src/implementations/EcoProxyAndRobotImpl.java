@@ -3,11 +3,14 @@ package implementations;
 import iRobotSMA.EcoProxy;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.EcoRobot;
+import ihm.Composant;
 import ihm.Couleur;
+import ihm.Position;
 import ihm.Type;
 import interfaces.ICreationEcosystem;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
@@ -44,20 +47,19 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 			}
 
 			@Override
-			public void listerEspece() {
+			public List<Composant> listerEspece() {
 				// TODO Auto-generated method stub
-				System.out.println(map.toString());
-				//ajout requires
+				return parts().robots().robotToEcoProxyAndRobot().getRobots();
 			}
 
 			@Override
-			public boolean createEspece(Integer posX, Integer posY, Type type,
+			public boolean createEspece(Position pos, Type type,
 					Couleur couleur) {
 				// TODO Auto-generated method stub
 				boolean b = false;
 				Integer idToCreate = getNextId();
 				if (!map.containsKey(idToCreate)){
-					ProxyAndRobot.Component par = newProxyAndRobot(idToCreate, posX, posY, type, couleur) ;
+					ProxyAndRobot.Component par = newProxyAndRobot(idToCreate, pos, type, couleur) ;
 					map.put(idToCreate, par);
 					b = true;
 				}

@@ -13,11 +13,19 @@ public class Composant {
     public Type type;
     public Couleur couleur;
     public int id;
+    public Position pos;
 
     public Composant(int id, Type type, Couleur couleur) {
         this.type = type;
         this.couleur = couleur;
         this.id = id;
+    }
+    
+    public Composant(int id, Type type, Couleur couleur, Position pos) {
+        this.type = type;
+        this.couleur = couleur;
+        this.id = id;
+        this.pos = pos;
     }
     
     public String getCouleur() {

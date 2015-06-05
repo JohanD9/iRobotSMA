@@ -12,6 +12,7 @@ import interfaces.IInfos;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 /**
  *
  * @author jdebat
@@ -96,11 +97,17 @@ public class IhmSma extends Ihm {
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos.getX(), pos.getY(), Type.ROBOT, 
+					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, 
 							c);
 					
-					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], 1, Type.ROBOT, c);
+					//grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], 1, Type.ROBOT, c);
+					
+					
 				}
+				
+				System.out.println("LISTE DES ESPECES");
+				
+				System.out.println(requires().creationEcosystemFromEcoProxyAndRobot().listerEspece().toString());
 				
 			}
 			
