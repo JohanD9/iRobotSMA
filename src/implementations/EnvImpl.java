@@ -1,5 +1,6 @@
 package implementations;
 
+import iRobotSMA.EcoBoite;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.Env;
 import iRobotSMA.Ihm;
@@ -27,8 +28,11 @@ public class EnvImpl extends Env{
 	protected void start() {
 		// TODO Auto-generated method stub
 		super.start();
-		System.out.println("Start EnvImpl");
-		//parts().ihm().controlToEnv().init();
-		//parts().ihm().controlToEnv().lancerSystem();
+	}
+
+	@Override
+	protected EcoBoite make_ecoBoite() {
+		// TODO Auto-generated method stub
+		return new EcoBoiteImpl();
 	}
 }

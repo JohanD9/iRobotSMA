@@ -96,9 +96,7 @@ public class Grille extends javax.swing.JPanel {
         
         String infos = "<html>";
         Case c = casePanelTable[ligne][colonne];
-        System.out.println(c.toString());
         for (Composant composant : c.listComposants) {
-            System.out.println(composant.toString());
             infos += composant.toString();
         }
         infos+="</html>";
@@ -106,12 +104,9 @@ public class Grille extends javax.swing.JPanel {
     }
     
     public void move(int idComposant, Type type, Couleur couleur, int oldAbs, int oldOrd, int abs, int ord) {
-        System.out.println("DEBUT");
         Case cOld = casePanelTable[oldAbs][oldOrd];
         cOld.removeAll();
-        System.out.println(cOld.toString());
         Case cNew = casePanelTable[abs][ord];
-        System.out.println(cNew.toString());
         
         removeComposant(cOld, idComposant, type, couleur);
         addComposant(cNew, idComposant, type, couleur);

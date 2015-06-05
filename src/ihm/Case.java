@@ -103,7 +103,6 @@ public class Case extends javax.swing.JPanel {
     public ArrayList<Composant> removeComposant(Composant composantToAdd) {
         if (listComposants.contains(composantToAdd)) {
             listComposants.remove(composantToAdd);
-            System.out.println("supprime");
         }
         
         String color;
@@ -111,7 +110,6 @@ public class Case extends javax.swing.JPanel {
         
         this.setBackground(Color.BLACK);
         this.setBackground(Color.WHITE);
-        System.out.println(listComposants);
         for (Composant composant : listComposants) {
             color = composant.getCouleur();
             if (composant.type.equals(Type.NID)) {

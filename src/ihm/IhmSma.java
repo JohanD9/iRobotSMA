@@ -6,6 +6,7 @@
 package ihm;
 
 import iRobotSMA.Ihm;
+import implementations.BoiteImpl;
 import implementations.RobotImpl;
 import interfaces.IControl;
 import interfaces.IInfos;
@@ -110,7 +111,8 @@ public class IhmSma extends Ihm {
 			@Override
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-		        for (RobotImpl c : listRobot) {
+				System.out.println(listRobot);
+		        /*for (RobotImpl c : listRobot) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -118,8 +120,8 @@ public class IhmSma extends Ihm {
 						e.printStackTrace();
 					}
 					c.lancer();
-					frame.validate();
-				}
+					frame.pack();
+				}*/
 				
 			}
 			
@@ -144,10 +146,22 @@ public class IhmSma extends Ihm {
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
 					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, c);
 				}
+				
+				for (int i = 0; i < nbBoite; i++) {
+					pos = randomPosition();
+					Random rand = new Random();
+					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
+					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.BOITE, c);
+				}
 
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 				for (RobotImpl c : listRobot) {
 					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
+				}
+				
+				List<BoiteImpl> listBoite = requires().listeBoiteFromEcoBoite().getBoites();
+				for(BoiteImpl b : listBoite) {
+					grille.addComposant(grille.getCasePanelTable()[b.position.getX()][b.position.getY()], b.id, b.type, b.couleur);
 				}
 				
 				
@@ -183,8 +197,6 @@ public class IhmSma extends Ihm {
 				int x = rand.nextInt(frame.ligne);
 				int y = rand.nextInt(frame.colonne);
 				Position p = new Position(x, y);
-				System.out.println(x + " : " + y);
-				System.out.println(frame.ligne + " : " + frame.colonne);
 				while (!grille.getCasePanelTable()[x][y].listComposants.isEmpty()) {
 					x = rand.nextInt(frame.ligne);
 					y = rand.nextInt(frame.colonne);

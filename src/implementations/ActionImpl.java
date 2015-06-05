@@ -34,6 +34,7 @@ public class ActionImpl extends Action{
 				for (int i = 0; i < tmpList.size(); i++) {
 					Composant comp = tmpList.get(i);
 					g.move(comp.id, comp.type, comp.couleur, pos.getX(), pos.getY(), ch.position.getX(), ch.position.getY());
+					g.validate();
 				}
 			}
 		};

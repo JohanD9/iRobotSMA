@@ -73,8 +73,6 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 					map.put(idToCreate, par);
 					b = true;
 				}
-				System.out.println(map.toString());
-				//parts().proxys().
 				
 				return b;
 			}

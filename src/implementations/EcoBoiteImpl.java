@@ -5,6 +5,7 @@ import ihm.Composant;
 import ihm.Couleur;
 import ihm.Position;
 import ihm.Type;
+import interfaces.IBoite;
 import interfaces.ICreationEcosystem;
 
 import java.util.ArrayList;
@@ -52,6 +53,17 @@ public class EcoBoiteImpl extends EcoBoite{
 				BoiteImpl boite = new BoiteImpl(idToCreate, pos, couleur, type);	
 
 				return boites.add(boite);
+			}
+		};
+	}
+
+	@Override
+	protected IBoite make_listBoites() {
+		return new IBoite() {
+			
+			@Override
+			public List<BoiteImpl> getBoites() {
+				return boites;
 			}
 		};
 	}

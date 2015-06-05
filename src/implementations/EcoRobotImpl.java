@@ -11,21 +11,14 @@ import java.util.List;
 
 public class EcoRobotImpl extends EcoRobot{
 	
-	public RobotImpl robot;
-	public List<RobotImpl> l = new ArrayList<RobotImpl>();
+	public List<RobotImpl> robotListe = new ArrayList<RobotImpl>();
 
 	@Override
 	protected Robot make_Robot(Integer id, Position pos, Type type, Couleur color) {
 		// TODO Auto-generated method stub
 		RobotImpl r = new RobotImpl(id, pos, type, color);
-		this.robot = r;
-		l.add(robot);
-		System.out.println("CREATION ROBOT");
+		robotListe.add(r);
 		return r;
-	}
-	
-	public List<RobotImpl> getL() {
-		return this.l;
 	}
 
 	@Override
@@ -35,13 +28,9 @@ public class EcoRobotImpl extends EcoRobot{
 			
 			@Override
 			public List<RobotImpl> getRobots() {
-				return l;
+				return robotListe;
 			}
 		};
 	}
-
 	
 }
-/*
-
-*/

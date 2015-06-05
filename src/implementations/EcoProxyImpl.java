@@ -14,8 +14,6 @@ public class EcoProxyImpl extends EcoProxy{
 		// TODO Auto-generated method stub
 		ProxyImpl proxy = new ProxyImpl(id);
 		proxysMap.put(id, proxy);
-		System.out.println("CREATION PROXY");
-		System.out.println(proxysMap.toString());
 		return proxy;
 	}
 

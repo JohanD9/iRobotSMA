@@ -8,6 +8,7 @@ import interfaces.IDecisionRobot
 import interfaces.IInfos
 import interfaces.IPerceptionRobot
 import interfaces.IRobot
+import interfaces.IBoite
 
 namespace iRobotSMA {
 	
@@ -32,6 +33,7 @@ namespace iRobotSMA {
 		provides controlToEnv : IControl
 		requires creationEcosystemFromEcoProxyAndRobot : ICreationEcosystem
 		requires listeRobotFromEcoProxyAndRobot : IRobot
+		requires listeBoiteFromEcoBoite : IBoite
 	}
 	
 	ecosystem EcoRobot {
@@ -80,7 +82,8 @@ namespace iRobotSMA {
 	}
 	
 	ecosystem EcoBoite {
-		provides creationEcoBoite : ICreationEcosystem		
+		provides creationEcoBoite : ICreationEcosystem
+		provides listBoites : IBoite	
 		species Boite(id: Integer, pos: Position, type: Type, color: Couleur) {
 		}
 	}
@@ -89,9 +92,11 @@ namespace iRobotSMA {
 		part ihm : Ihm {
 			bind creationEcosystemFromEcoProxyAndRobot to ecoProxyAndRobot.creationEcosystemToIhm
 			bind listeRobotFromEcoProxyAndRobot to ecoProxyAndRobot.listeRobots
+			bind listeBoiteFromEcoBoite to ecoBoite.listBoites
 		}
 		part ecoProxyAndRobot : EcoProxyAndRobot {
 			bind infosFromIhm to ihm.infosFromIhm
 		}
+		part ecoBoite : EcoBoite
 	}
 }
