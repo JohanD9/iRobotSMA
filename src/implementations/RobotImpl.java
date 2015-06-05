@@ -5,21 +5,21 @@ import iRobotSMA.Decision;
 import iRobotSMA.EcoRobot.Robot;
 import iRobotSMA.Perception;
 import ihm.Couleur;
+import ihm.Position;
 import ihm.Type;
 import interfaces.IActionRobot;
 
 public class RobotImpl extends Robot{
 	public Integer id;
-	public Integer positionX;
-	public Integer positionY;
+	public Position position;
 	public Type type;
 	public Couleur couleur;
 	
-	public RobotImpl (Integer id, Integer posX, Integer posY, Type type, Couleur color){
+	public RobotImpl (Integer id, Position pos, Type type, Couleur color){
 		this.id = id;
-		this.positionX = posX;
-		this.positionY = posY;
+		this.position = pos;
 		this.couleur = color;
+		this.type = type;
 	}
 
 	@Override
