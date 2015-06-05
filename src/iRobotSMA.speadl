@@ -2,13 +2,14 @@ import ihm.Couleur
 import ihm.Position
 import ihm.Type
 import interfaces.IActionRobot
+import interfaces.IBoite
 import interfaces.IControl
+import interfaces.ICreation
 import interfaces.ICreationEcosystem
 import interfaces.IDecisionRobot
 import interfaces.IInfos
 import interfaces.IPerceptionRobot
 import interfaces.IRobot
-import interfaces.IBoite
 
 namespace iRobotSMA {
 	
@@ -31,9 +32,10 @@ namespace iRobotSMA {
 	component Ihm {
 		provides infosFromIhm: IInfos
 		provides controlToEnv : IControl
-		requires creationEcosystemFromEcoProxyAndRobot : ICreationEcosystem
+		provides creationToEspece : ICreationEcosystem
 		requires listeRobotFromEcoProxyAndRobot : IRobot
 		requires listeBoiteFromEcoBoite : IBoite
+		requires creerEcoSysFromEcoProxyAndRobot : ICreation
 	}
 	
 	ecosystem EcoRobot {
@@ -64,8 +66,8 @@ namespace iRobotSMA {
 	}
 
 	ecosystem EcoProxyAndRobot {
-		provides creationEcosystemToIhm : ICreationEcosystem
 		provides listeRobots : IRobot
+		provides creerEcoSys : ICreation
 		requires infosFromIhm: IInfos
 		
 		part proxys : EcoProxy {
@@ -82,7 +84,6 @@ namespace iRobotSMA {
 	}
 	
 	ecosystem EcoBoite {
-		provides creationEcoBoite : ICreationEcosystem
 		provides listBoites : IBoite	
 		species Boite(id: Integer, pos: Position, type: Type, color: Couleur) {
 		}
@@ -90,9 +91,9 @@ namespace iRobotSMA {
 	
 	component Env {
 		part ihm : Ihm {
-			bind creationEcosystemFromEcoProxyAndRobot to ecoProxyAndRobot.creationEcosystemToIhm
 			bind listeRobotFromEcoProxyAndRobot to ecoProxyAndRobot.listeRobots
 			bind listeBoiteFromEcoBoite to ecoBoite.listBoites
+			bind creerEcoSysFromEcoProxyAndRobot to ecoProxyAndRobot.creerEcoSys
 		}
 		part ecoProxyAndRobot : EcoProxyAndRobot {
 			bind infosFromIhm to ihm.infosFromIhm

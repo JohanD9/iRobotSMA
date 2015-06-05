@@ -1,7 +1,5 @@
 package implementations;
 
-import java.util.ArrayList;
-
 import iRobotSMA.Action;
 import ihm.Case;
 import ihm.Choix;
@@ -9,6 +7,8 @@ import ihm.Composant;
 import ihm.Grille;
 import ihm.Position;
 import interfaces.IActionRobot;
+
+import java.util.ArrayList;
 
 public class ActionImpl extends Action{
 	
