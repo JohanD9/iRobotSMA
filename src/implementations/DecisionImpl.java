@@ -1,7 +1,12 @@
 package implementations;
 
 import iRobotSMA.Decision;
+import ihm.Case;
+import ihm.Choix;
+import ihm.Position;
 import interfaces.IDecisionRobot;
+
+import java.util.ArrayList;
 
 public class DecisionImpl extends Decision{
 	
@@ -15,16 +20,11 @@ public class DecisionImpl extends Decision{
 		return new IDecisionRobot() {
 			
 			@Override
-			public Boolean decider() {
-				// TODO Auto-generated method stub
-				if (requires().perceptionRobotFromPerception().percevoir())
-				{
-					System.out.println("DECISION : TRUE");
-					return true;
-				} else {
-					System.out.println("DECISION : FALSE");
-					return false;
-				}
+			public Choix decider(Position pos) {
+				ArrayList<Case> listCase = requires().perceptionRobotFromPerception().percevoir(pos);
+				Choix c = null;
+				
+				return c;
 			}
 		};
 	}

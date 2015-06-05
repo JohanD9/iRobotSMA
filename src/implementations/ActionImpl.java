@@ -1,6 +1,8 @@
 package implementations;
 
 import iRobotSMA.Action;
+import ihm.Choix;
+import ihm.Position;
 import interfaces.IActionRobot;
 
 public class ActionImpl extends Action{
@@ -15,15 +17,8 @@ public class ActionImpl extends Action{
 		return new IActionRobot() {
 			
 			@Override
-			public Boolean agir() {
-				// TODO Auto-generated method stub
-				if (requires().decisionRobotFromDecision().decider()){
-					System.out.println("ACTION : TRUE");
-					return true;
-				} else {
-					System.out.println("ACTION : FALSE");
-					return false;
-				}
+			public void agir(Position pos) {
+				Choix c = requires().decisionRobotFromDecision().decider(pos);
 			}
 		};
 	}

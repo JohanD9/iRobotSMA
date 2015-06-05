@@ -1,7 +1,11 @@
 package implementations;
 
 import iRobotSMA.Perception;
+import ihm.Case;
+import ihm.Position;
 import interfaces.IPerceptionRobot;
+
+import java.util.ArrayList;
 
 public class PerceptionImpl extends Perception{
 	
@@ -14,11 +18,10 @@ public class PerceptionImpl extends Perception{
 		return new IPerceptionRobot() {
 			
 			@Override
-			public Boolean percevoir() {
+			public ArrayList<Case> percevoir(Position pos) {
 				// TODO Auto-generated method stub
-				requires().infosFromRobot().sendData();
-				System.out.println("PERCEPTION : TRUE");
-				return true;
+				
+				return requires().infosFromRobot().sendData(pos);
 			}
 		};
 	}

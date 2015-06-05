@@ -39,7 +39,10 @@ public class IhmSma extends Ihm {
 		return new IInfos() {
 			
 			@Override
-			public ArrayList<Case> sendData(int x, int y) {
+			public ArrayList<Case> sendData(Position pos) {
+				int x = pos.getX();
+				int y = pos.getY();
+				
 				Case c = frame.getGrille().getCasePanelTable()[x][y];
 				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
@@ -123,14 +126,12 @@ public class IhmSma extends Ihm {
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, 
-							c);
+					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, c);
 				}
-					
-					//grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], 1, Type.ROBOT, c);
 
-				
-				//System.out.println(requires().creationEcosystemFromEcoProxyAndRobot().listerEspece().toString());
+				for (Composant c : requires().creationEcosystemFromEcoProxyAndRobot().listerEspece()) {
+					grille.addComposant(grille.getCasePanelTable()[c.pos.getX()][c.pos.getY()], c.id, c.type, c.couleur);
+				}
 				
 			}
 			

@@ -31,7 +31,7 @@ namespace iRobotSMA {
 		provides controlToEnv : IControl
 		requires creationEcosystemFromEcoProxyAndRobot : ICreationEcosystem
 	}
-
+	
 	ecosystem EcoRobot {
 		provides robotToEcoProxyAndRobot : IRobot
 		species Robot(id: Integer, pos: Position, type: Type, color: Couleur) {

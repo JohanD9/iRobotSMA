@@ -1,5 +1,7 @@
 package interfaces;
 
+import ihm.Position;
+
 public interface IActionRobot {
-	public Boolean agir();
+	public void agir(Position pos);
 }
