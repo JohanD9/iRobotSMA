@@ -40,6 +40,11 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 				// TODO Auto-generated method stub
 				return parts().robots().robotToEcoProxyAndRobot().getRobots();
 			}
+			
+			@Override
+			public void updateRobot(RobotImpl robot) {
+				parts().robots().robotToEcoProxyAndRobot().updateRobot(robot);
+			}
 		};
 	}
 
@@ -57,11 +62,6 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 				} else {
 					System.out.println("ELSE");
 				}
-			}
-
-			@Override
-			public void updateRobot(RobotImpl robot) {
-				parts().robots().robotToEcoProxyAndRobot().updateRobot(robot);
 			}
 		};
 	}
