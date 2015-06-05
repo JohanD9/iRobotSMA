@@ -109,7 +109,7 @@ public class IhmSma extends Ihm {
 			
 			@Override
 			public void lancerSystem() {
-				List<RobotImpl> listRobot = requires().creationEcosystemFromEcoProxyAndRobot().listerEspece();
+				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 		        for (RobotImpl c : listRobot) {
 					try {
 						Thread.sleep(1000);
@@ -145,7 +145,7 @@ public class IhmSma extends Ihm {
 					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, c);
 				}
 
-				List<RobotImpl> listRobot = requires().creationEcosystemFromEcoProxyAndRobot().listerEspece();
+				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 				for (RobotImpl c : listRobot) {
 					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
 				}

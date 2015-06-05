@@ -3,11 +3,14 @@ package implementations;
 import iRobotSMA.EcoProxy;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.EcoRobot;
+import ihm.Composant;
 import ihm.Couleur;
 import ihm.Position;
 import ihm.Type;
 import interfaces.ICreationEcosystem;
+import interfaces.IRobot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +49,17 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 			}
 
 			@Override
-			public List<RobotImpl> listerEspece() {
+			public List<Composant> listerEspece() {
 				// TODO Auto-generated method stub
-				return parts().robots().robotToEcoProxyAndRobot().getRobots();
+				List<RobotImpl> l = parts().robots().robotToEcoProxyAndRobot().getRobots();
+				List<Composant> lc = new ArrayList<Composant>();
+				Composant c;
+				
+				for (RobotImpl r : l){
+					c = new Composant(r.id, r.type, r.couleur, r.position);
+					lc.add(c);
+				}
+				return lc;
 			}
 
 			@Override
@@ -66,6 +77,19 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 				//parts().proxys().
 				
 				return b;
+			}
+		};
+	}
+
+	@Override
+	protected IRobot make_listeRobots() {
+		// TODO Auto-generated method stub
+		return new IRobot() {
+			
+			@Override
+			public List<RobotImpl> getRobots() {
+				// TODO Auto-generated method stub
+				return parts().robots().robotToEcoProxyAndRobot().getRobots();
 			}
 		};
 	}
