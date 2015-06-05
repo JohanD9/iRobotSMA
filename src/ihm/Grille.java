@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testihm;
+package ihm;
 
 import com.sun.org.apache.bcel.internal.util.SecuritySupport;
 import java.awt.BorderLayout;
