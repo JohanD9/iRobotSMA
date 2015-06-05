@@ -5,24 +5,9 @@
  */
 package ihm;
 
-import com.sun.org.apache.bcel.internal.util.SecuritySupport;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.ComboBoxEditor;
-import static javax.swing.GroupLayout.Alignment.CENTER;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import sun.applet.Main;
 
 /**
  *
