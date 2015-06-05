@@ -3,6 +3,7 @@ package implementations;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.Env;
 import iRobotSMA.Ihm;
+import ihm.IhmSma;
 
 public class EnvImpl extends Env{
 	
@@ -13,7 +14,7 @@ public class EnvImpl extends Env{
 	@Override
 	protected Ihm make_ihm() {
 		// TODO Auto-generated method stub
-		return new IhmImpl();
+		return new IhmSma();
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class EnvImpl extends Env{
 		// TODO Auto-generated method stub
 		super.start();
 		System.out.println("Start EnvImpl");
-		parts().ihm().controlToEnv().init();
-		parts().ihm().controlToEnv().lancerSystem();
+		//parts().ihm().controlToEnv().init();
+		//parts().ihm().controlToEnv().lancerSystem();
 	}
 }

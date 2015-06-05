@@ -26,15 +26,19 @@ import org.xml.sax.SAXException;
  */
 public class MainFraime extends javax.swing.JFrame {
     private Grille grille;
-    private int ligne = 30;
-    private int colonne = 30;
-    private int robot = 10;
+    public int ligne = 50;
+    public int colonne = 50;
+    public int robot = 0;
+    public int boite = 0;
+    public IhmSma ihm;
+    
     private boolean isRunning = false;
     private XmlToPersist persister;
     /**
      * Creates new form mainFraime
      */
-    public MainFraime() {
+    public MainFraime(IhmSma ihm) {
+    	this.ihm = ihm;
         initComponents();
         
         myInitComponents();
@@ -119,8 +123,7 @@ public class MainFraime extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jSpinnerAddRobot = new javax.swing.JSpinner();
         jSpinneraddBoite = new javax.swing.JSpinner();
-        jButtonAddRobot = new javax.swing.JButton();
-        jButtonAddBoite = new javax.swing.JButton();
+        jButtonAddRobotBoite = new javax.swing.JButton();
         jLabelNbRobots = new javax.swing.JLabel();
         jLabelNbBoites = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -192,25 +195,11 @@ public class MainFraime extends javax.swing.JFrame {
             }
         });
 
-        jSpinneraddBoite.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinneraddBoiteStateChanged(evt);
-            }
-        });
-
-        jButtonAddRobot.setText("Ajouter");
-        jButtonAddRobot.setEnabled(false);
-        jButtonAddRobot.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddRobotBoite.setText("Ajouter");
+        jButtonAddRobotBoite.setEnabled(false);
+        jButtonAddRobotBoite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddRobotActionPerformed(evt);
-            }
-        });
-
-        jButtonAddBoite.setText("Ajouter");
-        jButtonAddBoite.setEnabled(false);
-        jButtonAddBoite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddBoiteActionPerformed(evt);
+                jButtonAddRobotBoiteActionPerformed(evt);
             }
         });
 
@@ -250,8 +239,7 @@ public class MainFraime extends javax.swing.JFrame {
                                 .addComponent(jSpinnerAddRobot, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAddRobot)
-                            .addComponent(jButtonAddBoite))
+                            .addComponent(jButtonAddRobotBoite))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(updatePanelLayout.createSequentialGroup()
@@ -273,14 +261,13 @@ public class MainFraime extends javax.swing.JFrame {
                 .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jSpinnerAddRobot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAddRobot)
+                    .addComponent(jButtonAddRobotBoite)
                     .addComponent(jLabelNbRobots)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jSpinneraddBoite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAddBoite)
                     .addComponent(jLabelNbBoites)
                     .addComponent(jLabel7))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -472,45 +459,39 @@ public class MainFraime extends javax.swing.JFrame {
         jLabelVitesse.setText("Vitesse : " + jSliderVitesse.getValue() + " %");
     }//GEN-LAST:event_jSliderVitesseStateChanged
 
-    private void jButtonAddRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRobotActionPerformed
+    private void jButtonAddRobotBoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRobotActionPerformed
         int nbRobots = Integer.parseInt(jLabelNbRobots.getText());
         int nbRobotsToAdd = (int) jSpinnerAddRobot.getValue();
         nbRobots += nbRobotsToAdd;
         jLabelNbRobots.setText(String.valueOf(nbRobots));
-    }//GEN-LAST:event_jButtonAddRobotActionPerformed
-
-    private void jButtonAddBoiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddBoiteActionPerformed
         int nbBoites = Integer.parseInt(jLabelNbBoites.getText());
         int nbBoitesToAdd = (int) jSpinneraddBoite.getValue();
         nbBoites += nbBoitesToAdd;
         jLabelNbBoites.setText(String.valueOf(nbBoites));
-    }//GEN-LAST:event_jButtonAddBoiteActionPerformed
+        boite = nbBoites;
+        robot = nbRobots;
+        
+        //lancer la creation de robot via l'ihm
+        //System.out.println(nbRobots + " " + nbBoites);
+        ihm.make_controlToEnv().init();
+        
+        
+    }//GEN-LAST:event_jButtonAddRobotActionPerformed
+
 
     private void jSpinnerAddRobotStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerAddRobotStateChanged
         int value = (int) jSpinnerAddRobot.getValue();
         if (value == 0) {
-            jButtonAddRobot.setEnabled(false);
+            jButtonAddRobotBoite.setEnabled(false);
         } else if (value < 0) {
-            jButtonAddRobot.setEnabled(true);
-            jButtonAddRobot.setText("Supprimer");
+            jButtonAddRobotBoite.setEnabled(true);
+            jButtonAddRobotBoite.setText("Supprimer");
         } else {
-            jButtonAddRobot.setEnabled(true);
-            jButtonAddRobot.setText("Ajouter");
+            jButtonAddRobotBoite.setEnabled(true);
+            jButtonAddRobotBoite.setText("Ajouter");
         }
     }//GEN-LAST:event_jSpinnerAddRobotStateChanged
 
-    private void jSpinneraddBoiteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinneraddBoiteStateChanged
-        int value = (int) jSpinneraddBoite.getValue();
-        if (value == 0) {
-            jButtonAddBoite.setEnabled(false);
-        } else if (value < 0) {
-            jButtonAddBoite.setEnabled(true);
-            jButtonAddBoite.setText("Supprimer");
-        } else {
-            jButtonAddBoite.setEnabled(true);
-            jButtonAddBoite.setText("Ajouter");
-        }
-    }//GEN-LAST:event_jSpinneraddBoiteStateChanged
 
     private void jLabelPlayPauseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPlayPauseMouseReleased
         if (isRunning) {
@@ -592,7 +573,6 @@ public class MainFraime extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFraime().setVisible(true);
             }
         });
     }
@@ -601,8 +581,7 @@ public class MainFraime extends javax.swing.JFrame {
     private javax.swing.JPanel infosPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButtonAddBoite;
-    private javax.swing.JButton jButtonAddRobot;
+    private javax.swing.JButton jButtonAddRobotBoite;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

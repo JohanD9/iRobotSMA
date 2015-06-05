@@ -3,6 +3,8 @@ package implementations;
 import iRobotSMA.EcoProxy;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.EcoRobot;
+import ihm.Couleur;
+import ihm.Type;
 import interfaces.ICreationEcosystem;
 
 import java.util.HashMap;
@@ -29,22 +31,6 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 	protected ICreationEcosystem make_creationEcosystemToIhm() {
 		// TODO Auto-generated method stub
 		return new ICreationEcosystem() {
-			
-			@Override
-			public boolean createEspece(Integer posX, Integer posY, String couleur) {
-				// TODO Auto-generated method stub
-				boolean b = false;
-				Integer idToCreate = getNextId();
-				if (!map.containsKey(idToCreate)){
-					ProxyAndRobot.Component par = newProxyAndRobot(idToCreate, posX, posY, couleur) ;
-					map.put(idToCreate, par);
-					b = true;
-				}
-				System.out.println(map.toString());
-				//parts().proxys().
-				
-				return b;
-			}
 
 			@Override
 			public Integer getNextId() {
@@ -62,6 +48,23 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 				// TODO Auto-generated method stub
 				System.out.println(map.toString());
 				//ajout requires
+			}
+
+			@Override
+			public boolean createEspece(Integer posX, Integer posY, Type type,
+					Couleur couleur) {
+				// TODO Auto-generated method stub
+				boolean b = false;
+				Integer idToCreate = getNextId();
+				if (!map.containsKey(idToCreate)){
+					ProxyAndRobot.Component par = newProxyAndRobot(idToCreate, posX, posY, type, couleur) ;
+					map.put(idToCreate, par);
+					b = true;
+				}
+				System.out.println(map.toString());
+				//parts().proxys().
+				
+				return b;
 			}
 		};
 	}

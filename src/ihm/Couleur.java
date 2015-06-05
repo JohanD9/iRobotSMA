@@ -12,6 +12,5 @@ package ihm;
 public enum Couleur {
     BLUE,
     RED,
-    GREEN,
-    EMPTY
+    GREEN
 }

@@ -1,3 +1,5 @@
+import ihm.Couleur
+import ihm.Type
 import interfaces.IActionRobot
 import interfaces.IControl
 import interfaces.ICreationEcosystem
@@ -29,7 +31,7 @@ namespace iRobotSMA {
 	}
 
 	ecosystem EcoRobot {
-		species Robot(id: Integer, posX: Integer, posY: Integer, color: String) {
+		species Robot(id: Integer, posX: Integer, posY: Integer, type: Type, color: Couleur) {
 			provides actionRobotToEcoRobot: IActionRobot
 			requires infosFromProxy: IInfos
 
@@ -62,9 +64,9 @@ namespace iRobotSMA {
 		}
 		part robots : EcoRobot
 		
-		species ProxyAndRobot(id: Integer, posX: Integer, posY: Integer, color: String) {
+		species ProxyAndRobot(id: Integer, posX: Integer, posY: Integer, type: Type, color: Couleur) {
 			use proxy : proxys.Proxy(id)
-			use robot : robots.Robot(id, posX, posY, color) {
+			use robot : robots.Robot(id, posX, posY, type, color) {
 				bind infosFromProxy to proxy.infosToRobot
 			}
 		}
