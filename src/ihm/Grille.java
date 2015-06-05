@@ -112,11 +112,9 @@ public class Grille extends javax.swing.JPanel {
         System.out.println(cOld.toString());
         Case cNew = casePanelTable[abs][ord];
         System.out.println(cNew.toString());
-        Composant toMove = new Composant(idComposant, type, couleur);
         
         removeComposant(cOld, idComposant, type, couleur);
         addComposant(cNew, idComposant, type, couleur);
-        cOld.removeComposant(toMove);
         //cNew.addComposant(toMove);
         validate();
     }

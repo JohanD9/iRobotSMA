@@ -3,7 +3,6 @@ package implementations;
 import iRobotSMA.EcoProxy;
 import iRobotSMA.EcoProxyAndRobot;
 import iRobotSMA.EcoRobot;
-import ihm.Composant;
 import ihm.Couleur;
 import ihm.Position;
 import ihm.Type;
@@ -47,7 +46,7 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 			}
 
 			@Override
-			public List<Composant> listerEspece() {
+			public List<RobotImpl> listerEspece() {
 				// TODO Auto-generated method stub
 				return parts().robots().robotToEcoProxyAndRobot().getRobots();
 			}

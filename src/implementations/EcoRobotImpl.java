@@ -1,7 +1,6 @@
 package implementations;
 
 import iRobotSMA.EcoRobot;
-import ihm.Composant;
 import ihm.Couleur;
 import ihm.Position;
 import ihm.Type;
@@ -35,18 +34,8 @@ public class EcoRobotImpl extends EcoRobot{
 		return new IRobot() {
 			
 			@Override
-			public List<Composant> getRobots() {
-				// TODO Auto-generated method stub
-				
-				List<Composant> liste = new ArrayList<Composant>();
-				Composant c;
-				
-				for (RobotImpl robot : l){
-					c = new Composant(robot.id, robot.type, robot.couleur, robot.position);
-					liste.add(c);
-				}
-				
-				return liste;
+			public List<RobotImpl> getRobots() {
+				return l;
 			}
 		};
 	}

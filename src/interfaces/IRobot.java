@@ -1,9 +1,9 @@
 package interfaces;
 
-import ihm.Composant;
+import implementations.RobotImpl;
 
 import java.util.List;
 
 public interface IRobot {
-	public List<Composant> getRobots();
+	public List<RobotImpl> getRobots();
 }

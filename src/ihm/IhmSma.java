@@ -6,10 +6,12 @@
 package ihm;
 
 import iRobotSMA.Ihm;
+import implementations.RobotImpl;
 import interfaces.IControl;
 import interfaces.IInfos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -46,31 +48,38 @@ public class IhmSma extends Ihm {
 				Case c = frame.getGrille().getCasePanelTable()[x][y];
 				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
-				if (frame.getGrille().getCasePanelTable()[x-1][y-1] != null) {
+				
+				
+				if ((x-1 >= 0) && (x-1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y-1]);
 				}
-				if ((frame.getGrille().getCasePanelTable()[x-1][y]) != null) {
+				if ((x-1 >= 0) && (x-1 < 49) && (y >= 0) && (y < 49)) {
 					tourCase.add((frame.getGrille().getCasePanelTable()[x-1][y]));
 				}
-				if (frame.getGrille().getCasePanelTable()[x-1][y+1] != null) {
+				if ((x-1 >= 0) && (x-1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y+1]);
 				}
-				if (frame.getGrille().getCasePanelTable()[x][y-1] != null) {
+				if ((x >= 0) && (x < 49) && (y-1 >= 0) && (y-1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x][y-1]);
 				}
-				if (frame.getGrille().getCasePanelTable()[x][y+1] != null) {
+				if ((x >= 0) && (x < 49) && (y+1 >= 0) && (y+1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x][y+1]);
 				}
-				if (frame.getGrille().getCasePanelTable()[x+1][y-1] != null) {
+				if ((x+1 >= 0) && (x+1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y-1]);
 				}
-				if (frame.getGrille().getCasePanelTable()[x+1][y] != null) {
+				if ((x+1 >= 0) && (x+1 < 49) && (y >= 0) && (y < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y]);
 				}
-				if (frame.getGrille().getCasePanelTable()[x+1][y+1] != null) {
+				if ((x+1 >= 0) && (x+1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
 					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y+1]);
 				}
 				return tourCase;
+			}
+
+			@Override
+			public Grille getGrille() {
+				return frame.getGrille();
 			}
 		};
 	}
@@ -100,10 +109,17 @@ public class IhmSma extends Ihm {
 			
 			@Override
 			public void lancerSystem() {
-				System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
-
-		        frame.setLocationRelativeTo(null);
-		        frame.setVisible(true);       
+				List<RobotImpl> listRobot = requires().creationEcosystemFromEcoProxyAndRobot().listerEspece();
+		        for (RobotImpl c : listRobot) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					c.lancer();
+					frame.validate();
+				}
 				
 			}
 			
@@ -129,9 +145,13 @@ public class IhmSma extends Ihm {
 					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, c);
 				}
 
-				for (Composant c : requires().creationEcosystemFromEcoProxyAndRobot().listerEspece()) {
-					grille.addComposant(grille.getCasePanelTable()[c.pos.getX()][c.pos.getY()], c.id, c.type, c.couleur);
+				List<RobotImpl> listRobot = requires().creationEcosystemFromEcoProxyAndRobot().listerEspece();
+				for (RobotImpl c : listRobot) {
+					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
 				}
+				
+				
+				
 				
 			}
 			

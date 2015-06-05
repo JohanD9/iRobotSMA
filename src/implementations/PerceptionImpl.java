@@ -20,7 +20,6 @@ public class PerceptionImpl extends Perception{
 			@Override
 			public ArrayList<Case> percevoir(Position pos) {
 				// TODO Auto-generated method stub
-				
 				return requires().infosFromRobot().sendData(pos);
 			}
 		};

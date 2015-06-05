@@ -56,4 +56,8 @@ public class RobotImpl extends Robot{
 			make_actionRobotToEcoRobot().agir();
 		}*/
 	}
+	
+	public void lancer() {
+		make_actionRobotToEcoRobot().agir(position);
+	}
 }

@@ -23,6 +23,7 @@ namespace iRobotSMA {
 
 	component Action {
 		requires decisionRobotFromDecision: IDecisionRobot
+		requires grilleFromIhm : IInfos
 		provides actionRobotToRobot: IActionRobot
 	}
 
@@ -46,6 +47,7 @@ namespace iRobotSMA {
 			}
 			part action: Action {
 				bind decisionRobotFromDecision to decision.decisionRobotToAction
+				bind grilleFromIhm to infosFromProxy
 			}
 		}
 	}
