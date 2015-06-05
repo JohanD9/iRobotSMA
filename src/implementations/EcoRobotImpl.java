@@ -30,6 +30,15 @@ public class EcoRobotImpl extends EcoRobot{
 			public List<RobotImpl> getRobots() {
 				return robotListe;
 			}
+
+			@Override
+			public void updateRobot(RobotImpl robot) {
+				for (RobotImpl r : robotListe) {
+					if (r.id == robot.id) {
+						r.position = robot.position;
+					}
+				}
+			}
 		};
 	}
 	

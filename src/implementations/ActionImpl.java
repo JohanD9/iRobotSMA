@@ -22,7 +22,7 @@ public class ActionImpl extends Action{
 		return new IActionRobot() {
 			
 			@Override
-			public void agir(Position pos) {
+			public Position agir(Position pos) {
 				Choix ch = requires().decisionRobotFromDecision().decider(pos);
 				Grille g = requires().grilleFromIhm().getGrille();
 				
@@ -36,6 +36,7 @@ public class ActionImpl extends Action{
 					g.move(comp.id, comp.type, comp.couleur, pos.getX(), pos.getY(), ch.position.getX(), ch.position.getY());
 					g.validate();
 				}
+				return ch.position;
 			}
 		};
 	}
