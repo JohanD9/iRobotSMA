@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
  *
  * @author jdebat
  */
-public class mainFraime extends javax.swing.JFrame {
+public class MainFraime extends javax.swing.JFrame {
     private Grille grille;
     private int ligne = 30;
     private int colonne = 30;
@@ -34,7 +34,7 @@ public class mainFraime extends javax.swing.JFrame {
     /**
      * Creates new form mainFraime
      */
-    public mainFraime() {
+    public MainFraime() {
         initComponents();
         
         myInitComponents();
@@ -141,7 +141,7 @@ public class mainFraime extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 102));
 
         radioButtonPasPas.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        radioButtonPasPas.setText("Mode pas Ã  pas");
+        radioButtonPasPas.setText("Mode pas à pas");
         radioButtonPasPas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonPasPasActionPerformed(evt);
@@ -180,11 +180,11 @@ public class mainFraime extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("GÃ©rer les robots");
+        jLabel4.setText("Gérer les robots");
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("GÃ©rer les boites");
+        jLabel5.setText("Gérer les boites");
 
         jSpinnerAddRobot.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -290,7 +290,7 @@ public class mainFraime extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Informations de la case selectionnÃ©e :");
+        jLabel3.setText("Informations de la case selectionnée :");
 
         jLabel8.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -532,11 +532,11 @@ public class mainFraime extends javax.swing.JFrame {
         try {
             persister.loadGrilleFromXml();
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
-            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -579,20 +579,20 @@ public class mainFraime extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFraime().setVisible(true);
+                new MainFraime().setVisible(true);
             }
         });
     }

@@ -44,7 +44,7 @@ public class XmlToPersist {
         try {
             docBuilder = docFactory.newDocumentBuilder();
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // root elements
@@ -94,7 +94,7 @@ public class XmlToPersist {
         try {
             transformer = transformerFactory.newTransformer();
         } catch (TransformerConfigurationException ex) {
-            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         JFileChooser chooser = new JFileChooser();
@@ -121,7 +121,7 @@ public class XmlToPersist {
                 transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 transformer.transform(source, result);
             } catch (TransformerException ex) {
-                Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         

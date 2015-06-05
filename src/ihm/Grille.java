@@ -33,7 +33,7 @@ public class Grille extends javax.swing.JPanel {
     public int nbColonne;
     private Dimension dimensionCase;
     public static Case casePanelTable[][];
-    private mainFraime frame;
+    private MainFraime frame;
     
     final String red = "red";
     final String green = "green";
@@ -47,7 +47,7 @@ public class Grille extends javax.swing.JPanel {
     /**
      * Creates new form Grille
      */
-    public Grille(int lignes, int colonnes, mainFraime pere) {
+    public Grille(int lignes, int colonnes, MainFraime pere) {
         initComponents();
         nbLigne = lignes;
         nbColonne = colonnes;
