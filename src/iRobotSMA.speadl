@@ -1,0 +1,80 @@
+import interfaces.IActionRobot
+import interfaces.IControl
+import interfaces.ICreationEcosystem
+import interfaces.IDecisionRobot
+import interfaces.IInfos
+import interfaces.IPerceptionRobot
+
+namespace iRobotSMA {
+	component Perception {
+		requires infosFromRobot: IInfos
+		provides perceptionRobotToDecision: IPerceptionRobot
+	}
+
+	component Decision {
+		requires perceptionRobotFromPerception: IPerceptionRobot
+		provides decisionRobotToAction: IDecisionRobot
+	}
+
+	component Action {
+		requires decisionRobotFromDecision: IDecisionRobot
+		provides actionRobotToRobot: IActionRobot
+	}
+
+	component Ihm {
+		provides infosFromIhm: IInfos
+		provides controlToEnv : IControl
+		requires creationEcosystemFromEcoProxyAndRobot : ICreationEcosystem
+	}
+
+	ecosystem EcoRobot {
+		species Robot(id: Integer, posX: Integer, posY: Integer, color: String) {
+			provides actionRobotToEcoRobot: IActionRobot
+			requires infosFromProxy: IInfos
+
+			part perception: Perception {
+				bind infosFromRobot to infosFromProxy
+			}
+			part decision: Decision {
+				bind perceptionRobotFromPerception to perception.perceptionRobotToDecision
+			}
+			part action: Action {
+				bind decisionRobotFromDecision to decision.decisionRobotToAction
+			}
+		}
+	}
+
+	ecosystem EcoProxy {
+		requires infosFromEcoProxyAndRobot : IInfos
+
+		species Proxy(id: Integer) {
+			provides infosToRobot: IInfos
+		}
+	}
+
+	ecosystem EcoProxyAndRobot {
+		provides creationEcosystemToIhm : ICreationEcosystem
+		requires infosFromIhm: IInfos
+		
+		part proxys : EcoProxy {
+			bind infosFromEcoProxyAndRobot to infosFromIhm
+		}
+		part robots : EcoRobot
+		
+		species ProxyAndRobot(id: Integer, posX: Integer, posY: Integer, color: String) {
+			use proxy : proxys.Proxy(id)
+			use robot : robots.Robot(id, posX, posY, color) {
+				bind infosFromProxy to proxy.infosToRobot
+			}
+		}
+	}
+	
+	component Env {
+		part ihm : Ihm {
+			bind creationEcosystemFromEcoProxyAndRobot to ecoProxyAndRobot.creationEcosystemToIhm
+		}
+		part ecoProxyAndRobot : EcoProxyAndRobot {
+			bind infosFromIhm to ihm.infosFromIhm
+		}
+	}
+}

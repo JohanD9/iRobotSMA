@@ -1,14 +1,12 @@
 package main;
 
-import test.ComponentServerType;
-import implementations.ComponentServerImpl;
+import iRobotSMA.Env;
+import implementations.EnvImpl;
 
 public class Launcher {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ComponentServerType.Component c = (new ComponentServerImpl()).newComponent();
-		System.out.println(c.nomPortServiceContraire().serviceContraire(false));
+		// TODO Auto-generated method stub		
+		Env.Component e = (new EnvImpl()).newComponent();
 	}
-
 }
