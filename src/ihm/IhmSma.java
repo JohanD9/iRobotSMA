@@ -38,9 +38,35 @@ public class IhmSma extends Ihm {
 		return new IInfos() {
 			
 			@Override
-			public void sendData() {
-				// TODO Auto-generated method stub
+			public ArrayList<Case> sendData(int x, int y) {
+				Case c = frame.getGrille().getCasePanelTable()[x][y];
+				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
+				if (frame.getGrille().getCasePanelTable()[x-1][y-1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y-1]);
+				}
+				if ((frame.getGrille().getCasePanelTable()[x-1][y]) != null) {
+					tourCase.add((frame.getGrille().getCasePanelTable()[x-1][y]));
+				}
+				if (frame.getGrille().getCasePanelTable()[x-1][y+1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y+1]);
+				}
+				if (frame.getGrille().getCasePanelTable()[x][y-1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x][y-1]);
+				}
+				if (frame.getGrille().getCasePanelTable()[x][y+1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x][y+1]);
+				}
+				if (frame.getGrille().getCasePanelTable()[x+1][y-1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y-1]);
+				}
+				if (frame.getGrille().getCasePanelTable()[x+1][y] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y]);
+				}
+				if (frame.getGrille().getCasePanelTable()[x+1][y+1] != null) {
+					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y+1]);
+				}
+				return tourCase;
 			}
 		};
 	}
@@ -99,8 +125,9 @@ public class IhmSma extends Ihm {
 					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos.getX(), pos.getY(), Type.ROBOT, 
 							c);
 					
-					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], 1, Type.ROBOT, c);
+					//grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], 1, Type.ROBOT, c);
 				}
+				
 				
 			}
 			

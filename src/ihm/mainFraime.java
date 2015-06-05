@@ -179,15 +179,15 @@ public class MainFraime extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Gestion des composants :");
+        jLabel2.setText("Initialisation des composants :");
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Gérer les robots");
+        jLabel4.setText("Ajouter des robots");
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Gérer les boites");
+        jLabel5.setText("Ajouter des boites");
 
         jSpinnerAddRobot.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -470,6 +470,9 @@ public class MainFraime extends javax.swing.JFrame {
         jLabelNbBoites.setText(String.valueOf(nbBoites));
         boite = nbBoites;
         robot = nbRobots;
+        
+
+        updatePanel.setVisible(false);
         
         //lancer la creation de robot via l'ihm
         //System.out.println(nbRobots + " " + nbBoites);

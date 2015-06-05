@@ -1,5 +1,9 @@
 package interfaces;
 
+import ihm.Case;
+
+import java.util.ArrayList;
+
 public interface IInfos {
-	public void sendData();
+	public ArrayList<Case> sendData(int x, int y);
 }
