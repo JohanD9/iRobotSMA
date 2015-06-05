@@ -19,7 +19,7 @@ public class IhmSma {
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 
-        mainFraime frame = new mainFraime();
+        MainFraime frame = new MainFraime();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);       
         
