@@ -58,6 +58,11 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 					System.out.println("ELSE");
 				}
 			}
+
+			@Override
+			public void updateRobot(RobotImpl robot) {
+				parts().robots().robotToEcoProxyAndRobot().updateRobot(robot);
+			}
 		};
 	}
 }

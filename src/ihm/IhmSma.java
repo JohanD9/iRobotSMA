@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.SwingUtilities;
+
 
 /**
  *
@@ -119,16 +121,15 @@ public class IhmSma extends Ihm {
 			@Override
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
+
+				System.out.println(listRobot);
 		        for (RobotImpl c : listRobot) {
-					/*try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-					c.lancer();
-					frame.pack();
+					Position newPosRobot = c.lancer();
+					c.position = newPosRobot;
+					requires().listeRobotFromEcoProxyAndRobot().updateRobot(c);
 				}
+		        frame.validate();
+		        frame.getGrille().validate();
 				
 			}
 			

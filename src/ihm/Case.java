@@ -96,7 +96,8 @@ public class Case extends javax.swing.JPanel {
                 }
             }
         }
-        
+        this.setVisible(false);
+        this.setVisible(true);
         return listComposants;
     }
     
@@ -136,7 +137,8 @@ public class Case extends javax.swing.JPanel {
                 }
             }
         }
-        
+        this.setVisible(false);
+        this.setVisible(true);
         return listComposants;
     }
     
