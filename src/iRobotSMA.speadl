@@ -75,6 +75,13 @@ namespace iRobotSMA {
 		}
 	}
 	
+	ecosystem EcoBoite {
+		provides creationEcoBoite : ICreationEcosystem
+		
+		species Boite(id: Integer, pos: Position, type: Type, color: Couleur) {
+		}
+	}
+	
 	component Env {
 		part ihm : Ihm {
 			bind creationEcosystemFromEcoProxyAndRobot to ecoProxyAndRobot.creationEcosystemToIhm
