@@ -1,8 +1,10 @@
 package interfaces;
 
-import java.util.ArrayList;
-
+import ihm.Couleur;
 import ihm.Position;
+import ihm.Type;
+
+import java.util.ArrayList;
 
 public interface IControl {
 	public void init();
@@ -13,6 +15,8 @@ public interface IControl {
 	public void pause();
 	public void reprendre();
 	public void sauvegarder();
+	public int Charger(Position pos, Type type, Couleur couleur);
 	public void chargerEtat();
 	public Position randomPosition();
+	public void viderSystem();
 }

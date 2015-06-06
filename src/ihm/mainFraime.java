@@ -71,7 +71,7 @@ public class MainFraime extends javax.swing.JFrame {
         this.add(grille, BorderLayout.CENTER);
         
         // Gestionnaire persistence
-        persister = new XmlToPersist(grille);
+        persister = new XmlToPersist(grille, control);
         
         // Taille optionPanel
         optionsPanel.setPreferredSize(new Dimension((int) (Math.round(widthFrame * 0.38)), (int) (Math.round(heightFrame * 0.98))));
@@ -519,7 +519,8 @@ public class MainFraime extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
+       control.viderSystem();
+    	try {
             persister.loadGrilleFromXml();
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);

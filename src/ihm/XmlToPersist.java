@@ -5,9 +5,12 @@
  */
 package ihm;
 
+import interfaces.IControl;
+
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
@@ -20,6 +23,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,9 +37,11 @@ import org.xml.sax.SAXException;
  */
 public class XmlToPersist {
     Grille grille;
+    public IControl control;
 
-    public XmlToPersist(Grille grille) {
+    public XmlToPersist(Grille grille, IControl ctrl) {
         this.grille = grille;
+        this.control = ctrl;
     }
     
     public void saveGrilleInXmlFile() {

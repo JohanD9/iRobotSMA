@@ -46,27 +46,7 @@ public class Grille extends javax.swing.JPanel {
                 casePanelTable[ligne][colonne] = new Case(dimensionCase, ligne, colonne, this);
                 add(casePanelTable[ligne][colonne]);
             }
-        }
-        
-        //Ajout des nids
-        /*addComposant(casePanelTable[6][7], 1, Type.NID, Couleur.BLUE);
-        addComposant(casePanelTable[6][14], 2, Type.NID, Couleur.RED);
-        addComposant(casePanelTable[6][21], 3, Type.NID, Couleur.GREEN);
-        
-        //addComposant(casePanelTable[6][21], 4, Type.ROBOT, Couleur.GREEN);
-        addComposant(casePanelTable[21][21], 1, Type.ROBOT, Couleur.GREEN);
-        addComposant(casePanelTable[10][13], 2, Type.ROBOT, Couleur.RED);
-        addComposant(casePanelTable[12][3], 3, Type.ROBOT, Couleur.BLUE);
-        
-        addComposant(casePanelTable[10][13], 1, Type.BOITE, Couleur.GREEN);
-        addComposant(casePanelTable[15][26], 2, Type.BOITE, Couleur.RED);
-        addComposant(casePanelTable[21][21], 3, Type.BOITE, Couleur.BLUE);
-        
-        addComposant(casePanelTable[0][0], 1, Type.BOITE, Couleur.GREEN);
-        addComposant(casePanelTable[0][0], 2, Type.ROBOT, Couleur.RED);
-        removeComposant(casePanelTable[0][0], 2, Type.ROBOT, Couleur.RED);*/
-        
-  
+        }   
         setVisible(true);
 
     }
@@ -110,8 +90,6 @@ public class Grille extends javax.swing.JPanel {
         
         removeComposant(cOld, idComposant, type, couleur);
         addComposant(cNew, idComposant, type, couleur);
-        System.out.println("ANCIENNES " + cOld.toString());
-        System.out.println("NOUVELLES " + cNew.toString());
         //cNew.addComposant(toMove);
         validate();
     }

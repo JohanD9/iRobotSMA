@@ -23,6 +23,8 @@ import java.util.Random;
 
 import javax.swing.SwingUtilities;
 
+import sun.net.www.protocol.http.HttpURLConnection.TunnelState;
+
 
 /**
  *
@@ -32,9 +34,6 @@ public class IhmSma extends Ihm {
 
 	public MainFraime frame;
 	ArrayList<Position> posNid;
-	
-	Integer idRobot = 0;
-	Integer idBoite = 0;
 
 	Integer idRobot = 0;
 	Integer idBoite = 0;
@@ -150,7 +149,6 @@ public class IhmSma extends Ihm {
 			@Override
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-				System.out.println(listRobot);
 			}
 			
 			@Override
@@ -183,7 +181,7 @@ public class IhmSma extends Ihm {
 				}
 
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-				for (RobotImpl c : listRobot) {
+				for (RobotImpl c : listRobot) {					
 					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
 				}
 				
@@ -234,6 +232,17 @@ public class IhmSma extends Ihm {
 				}
 				return p;
 			}
+
+			@Override
+			public void viderSystem() {
+				provides().creationToEspece().removeEspece();
+				
+			}
+
+			@Override
+			public int Charger(Position pos, Type type, Couleur couleur) {
+				return provides().creationToEspece().createEspece(pos, type, couleur);
+			}
 		};
 	}
 
@@ -248,7 +257,6 @@ public class IhmSma extends Ihm {
 				List<Composant> listEsp = new ArrayList<Composant>();
 				Composant c;
 				
-				System.out.println(listEspece.getClass());
 				return listEsp;
 			}
 			
@@ -273,9 +281,9 @@ public class IhmSma extends Ihm {
 			}
 			
 			@Override
-			public boolean createEspece(Position pos, Type type, Couleur couleur) {
+			public int createEspece(Position pos, Type type, Couleur couleur) {
 				// TODO Auto-generated method stub
-				Integer idToCreate;
+				Integer idToCreate = 0;
 				boolean b = false;
 				
 				if (Type.ROBOT == type){
@@ -288,7 +296,19 @@ public class IhmSma extends Ihm {
 					requires().listeBoiteFromEcoBoite().getBoites().add(boite);
 					b = true;
 				}
-				return b;
+				return idToCreate;
+			}
+
+			@Override
+			public void removeEspece() {
+				System.out.println(requires().listeRobotFromEcoProxyAndRobot().getRobots());
+				System.out.println(requires().listeBoiteFromEcoBoite().getBoites());
+				requires().listeBoiteFromEcoBoite().getBoites().clear();
+				requires().creerEcoSysFromEcoProxyAndRobot().removeAll();
+				System.out.println(requires().listeRobotFromEcoProxyAndRobot().getRobots());
+				System.out.println(requires().listeBoiteFromEcoBoite().getBoites());
+				
+				
 			}
 		};
 	}
@@ -302,7 +322,6 @@ public class IhmSma extends Ihm {
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         posNid = new ArrayList<Position>();
-		System.out.println("FRAME START");
 	}
     
 }
