@@ -15,7 +15,7 @@ public interface IControl {
 	public void pause();
 	public void reprendre();
 	public void sauvegarder();
-	public int Charger(Position pos, Type type, Couleur couleur);
+	public int charger(Position pos, Type type, Couleur couleur);
 	public void chargerEtat();
 	public Position randomPosition();
 	public void viderSystem();

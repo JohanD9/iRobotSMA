@@ -24,15 +24,11 @@ public class ActionImpl extends Action{
 			@Override
 			public Position agir(Position pos) {
 				Choix ch = requires().decisionRobotFromDecision().decider(pos);
-				if (ch == null) {
-					return pos;
-				}
 				Grille g = requires().grilleFromIhm().getGrille();
 				
 				Case currentCase = g.getCasePanelTable()[pos.getX()][pos.getY()];
 				
 				ArrayList<Composant> tmpList = currentCase.listComposants;
-				
 				for (int i = 0; i < tmpList.size(); i++) {
 					Composant comp = tmpList.get(i);
 					g.move(comp.id, comp.type, comp.couleur, pos.getX(), pos.getY(), ch.position.getX(), ch.position.getY());

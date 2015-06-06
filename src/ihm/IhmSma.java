@@ -5,25 +5,16 @@
  */
 package ihm;
 
-import iRobotSMA.EcoProxy;
-import iRobotSMA.EcoProxyAndRobot;
-import iRobotSMA.EcoProxyAndRobot.ProxyAndRobot;
-import iRobotSMA.EcoRobot;
 import iRobotSMA.Ihm;
 import implementations.BoiteImpl;
 import implementations.RobotImpl;
 import interfaces.IControl;
 import interfaces.ICreationEcosystem;
 import interfaces.IInfos;
-import interfaces.IRobot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.swing.SwingUtilities;
-
-import sun.net.www.protocol.http.HttpURLConnection.TunnelState;
 
 
 /**
@@ -51,53 +42,52 @@ public class IhmSma extends Ihm {
 				Case c = frame.getGrille().getCasePanelTable()[x][y];
 				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
-				
 				Case tmp = null;
-				if ((x-1 >= 0) && (x-1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
+				if ((x-1 >= 0) && (x-1 < 50) && (y-1 >= 0) && (y-1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x-1][y-1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x-1 >= 0) && (x-1 < 49) && (y >= 0) && (y < 49)) {
+				if ((x-1 >= 0) && (x-1 < 50) && (y >= 0) && (y < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x-1][y];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x-1 >= 0) && (x-1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
+				if ((x-1 >= 0) && (x-1 < 50) && (y+1 >= 0) && (y+1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x-1][y+1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x >= 0) && (x < 49) && (y-1 >= 0) && (y-1 < 49)) {
+				if ((x >= 0) && (x < 50) && (y-1 >= 0) && (y-1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x][y-1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x >= 0) && (x < 49) && (y+1 >= 0) && (y+1 < 49)) {
+				if ((x >= 0) && (x < 50) && (y+1 >= 0) && (y+1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x][y+1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
+				if ((x+1 >= 0) && (x+1 < 50) && (y-1 >= 0) && (y-1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x+1][y-1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y >= 0) && (y < 49)) {
+				if ((x+1 >= 0) && (x+1 < 50) && (y >= 0) && (y < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x+1][y];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
+				if ((x+1 >= 0) && (x+1 < 50) && (y+1 >= 0) && (y+1 < 50)) {
 					tmp = frame.getGrille().getCasePanelTable()[x+1][y+1];
-					if (isEmptyOrOnlyBoite(c)) {
+					if (isEmptyOrOnlyBoite(tmp)) {
 						tourCase.add(tmp);
 					}
 				}
@@ -108,19 +98,19 @@ public class IhmSma extends Ihm {
 			public Grille getGrille() {
 				return frame.getGrille();
 			}
-			
-			public boolean isEmptyOrOnlyBoite(Case c) {
-				if (c.listComposants.size() == 0) {
-					return true;
-				}
-				if (c.listComposants.size() == 1) {
-					if (c.listComposants.get(0).type == Type.BOITE) {
-						return true;
-					}
-				}
-				return false;
-			}
 		};
+	}
+	
+	public boolean isEmptyOrOnlyBoite(Case c) {
+		if (c.listComposants.size() == 0) {
+			return true;
+		}
+		if (c.listComposants.size() == 1) {
+			if (c.listComposants.get(0).type == Type.BOITE) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -149,6 +139,7 @@ public class IhmSma extends Ihm {
 			@Override
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
+				System.out.println(listRobot);
 			}
 			
 			@Override
@@ -166,34 +157,25 @@ public class IhmSma extends Ihm {
 				int nbBoite = getNbBoite();
 				
 				Position pos;
+				Integer idToCreate;
 				for (int i = 0; i < nbRobot; i++) {
+					idToCreate = provides().creationToEspece().getNextId(Type.ROBOT);
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					provides().creationToEspece().createEspece(pos, Type.ROBOT, c);
+					//D'abord créer le composant dans la grille
+					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], idToCreate, Type.ROBOT, c, pos);
+					provides().creationToEspece().createEspece(idToCreate, pos, Type.ROBOT, c);
 				}
 				
 				for (int i = 0; i < nbBoite; i++) {
+					idToCreate = provides().creationToEspece().getNextId(Type.BOITE);
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					provides().creationToEspece().createEspece(pos, Type.BOITE, c);
+					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], idToCreate, Type.BOITE, c, pos);
+					provides().creationToEspece().createEspece(idToCreate, pos, Type.BOITE, c);
 				}
-
-				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-				for (RobotImpl c : listRobot) {					
-					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
-				}
-				
-				
-				List<BoiteImpl> listBoite = requires().listeBoiteFromEcoBoite().getBoites();
-				for(BoiteImpl b : listBoite) {
-					grille.addComposant(grille.getCasePanelTable()[b.position.getX()][b.position.getY()], b.id, b.type, b.couleur);
-				}
-				
-				
-				
-				
 			}
 			
 			@Override
@@ -234,14 +216,19 @@ public class IhmSma extends Ihm {
 			}
 
 			@Override
-			public void viderSystem() {
-				provides().creationToEspece().removeEspece();
+			public int charger(Position pos, Type type, Couleur couleur) {
+				Grille grille = frame.getGrille();
+				Integer idToCreate = provides().creationToEspece().getNextId(type);
 				
+				//D'abord créer le composant dans la grille
+				provides().creationToEspece().createEspece(idToCreate, pos, type, couleur);
+				return idToCreate;
 			}
 
 			@Override
-			public int Charger(Position pos, Type type, Couleur couleur) {
-				return provides().creationToEspece().createEspece(pos, type, couleur);
+			public void viderSystem() {
+				provides().creationToEspece().removeEspece();
+				
 			}
 		};
 	}
@@ -257,6 +244,7 @@ public class IhmSma extends Ihm {
 				List<Composant> listEsp = new ArrayList<Composant>();
 				Composant c;
 				
+				System.out.println(listEspece.getClass());
 				return listEsp;
 			}
 			
@@ -281,33 +269,25 @@ public class IhmSma extends Ihm {
 			}
 			
 			@Override
-			public int createEspece(Position pos, Type type, Couleur couleur) {
+			public boolean createEspece(Integer id, Position pos, Type type, Couleur couleur) {
 				// TODO Auto-generated method stub
-				Integer idToCreate = 0;
 				boolean b = false;
 				
 				if (Type.ROBOT == type){
-					idToCreate = getNextId(type);
-					requires().creerEcoSysFromEcoProxyAndRobot().create(idToCreate, pos, couleur, type);
+					requires().creerEcoSysFromEcoProxyAndRobot().create(id, pos, couleur, type);
 					b = true;
 				} else if (Type.BOITE == type){
-					idToCreate = getNextId(type);
-					BoiteImpl boite = new BoiteImpl(idToCreate, pos, couleur, type);	
+					BoiteImpl boite = new BoiteImpl(id, pos, couleur, type);	
 					requires().listeBoiteFromEcoBoite().getBoites().add(boite);
 					b = true;
 				}
-				return idToCreate;
+				return b;
 			}
 
 			@Override
 			public void removeEspece() {
-				System.out.println(requires().listeRobotFromEcoProxyAndRobot().getRobots());
-				System.out.println(requires().listeBoiteFromEcoBoite().getBoites());
 				requires().listeBoiteFromEcoBoite().getBoites().clear();
 				requires().creerEcoSysFromEcoProxyAndRobot().removeAll();
-				System.out.println(requires().listeRobotFromEcoProxyAndRobot().getRobots());
-				System.out.println(requires().listeBoiteFromEcoBoite().getBoites());
-				
 				
 			}
 		};
@@ -322,6 +302,7 @@ public class IhmSma extends Ihm {
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         posNid = new ArrayList<Position>();
+		System.out.println("FRAME START");
 	}
     
 }

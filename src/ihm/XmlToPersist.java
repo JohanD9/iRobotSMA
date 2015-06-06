@@ -167,8 +167,9 @@ public class XmlToPersist {
                             String id = eComp.getElementsByTagName("id").item(0).getTextContent();
                             String type = eComp.getElementsByTagName("type").item(0).getTextContent();
                             String couleur = eComp.getElementsByTagName("couleur").item(0).getTextContent();
-
-                            grille.addComposant(grille.getCasePanelTable()[abscisse][ordonne], Integer.valueOf(id), getType(type), getCouleur(couleur));
+                            
+                            int idReturn = control.charger(new Position(abscisse, ordonne), getType(type), getCouleur(couleur));
+                            grille.addComposant(grille.getCasePanelTable()[abscisse][ordonne], idReturn, getType(type), getCouleur(couleur));
                             grille.validate();
                         }
                     }

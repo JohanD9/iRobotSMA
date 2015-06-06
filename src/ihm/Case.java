@@ -67,6 +67,8 @@ public class Case extends javax.swing.JPanel {
     public ArrayList<Composant> addComposant(Composant composantToAdd) {
         if (!listComposants.contains(composantToAdd)) {
             listComposants.add(composantToAdd);
+        } else {
+        	System.out.println("Composant deja dans la case");
         }
         
         String color;
