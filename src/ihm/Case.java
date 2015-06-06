@@ -152,6 +152,44 @@ public class Case extends javax.swing.JPanel {
         setBackground(Color.WHITE);
     }
     
+    public Couleur getCouleurBoite() {
+    	for (Composant c : listComposants) {
+    		if (c.type == Type.BOITE) {
+    			return c.couleur;
+    		}
+    	}
+    	return null;
+    }
+    
+    public Composant getBoite() {
+    	for (Composant c : listComposants) {
+    		if (c.type == Type.BOITE) {
+    			return c;
+    		}
+    	}
+    	return null;
+    }
+    
+    public Boolean getNid(Couleur couleur) {
+    	for (Composant c : listComposants) {
+    		if (c.type == Type.NID && c.couleur == couleur) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public Composant removeBoite() {
+    	for (Composant c : listComposants) {
+    		if (c.type == Type.BOITE) {
+    			removeComposant(c);
+    			return c;
+    		}
+    	}
+    	return null;
+    }
+    
+    
 
     @Override
     public String toString() {

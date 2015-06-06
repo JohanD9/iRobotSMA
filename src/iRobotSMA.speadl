@@ -20,6 +20,7 @@ namespace iRobotSMA {
 
 	component Decision {
 		requires perceptionRobotFromPerception: IPerceptionRobot
+		requires grilleFromIhm : IInfos
 		provides decisionRobotToAction: IDecisionRobot
 	}
 
@@ -49,6 +50,7 @@ namespace iRobotSMA {
 			}
 			part decision: Decision {
 				bind perceptionRobotFromPerception to perception.perceptionRobotToDecision
+				bind grilleFromIhm to infosFromProxy
 			}
 			part action: Action {
 				bind decisionRobotFromDecision to decision.decisionRobotToAction

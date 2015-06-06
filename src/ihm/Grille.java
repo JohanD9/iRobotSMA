@@ -88,9 +88,8 @@ public class Grille extends javax.swing.JPanel {
         frame.getjLabelComposantsCase().setText(infos);
     }
     
-    public void move(int idComposant, Type type, Couleur couleur, int oldAbs, int oldOrd, int abs, int ord) {
+    public synchronized void move(int idComposant, Type type, Couleur couleur, int oldAbs, int oldOrd, int abs, int ord) {
         Case cOld = casePanelTable[oldAbs][oldOrd];
-        cOld.removeAll();
         Case cNew = casePanelTable[abs][ord];
         
         removeComposant(cOld, idComposant, type, couleur);
