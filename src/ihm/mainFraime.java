@@ -508,7 +508,7 @@ public class MainFraime extends javax.swing.JFrame {
             isRunning = true;
             ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
             jLabelPlayPause.setIcon(pauseIcon);
-            ihm.make_controlToEnv().lancerSystem();
+            //ihm.make_controlToEnv().lancerSystem();
         }
     }//GEN-LAST:event_jLabelPlayPauseMouseReleased
 

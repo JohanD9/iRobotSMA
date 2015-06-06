@@ -123,14 +123,16 @@ public class IhmSma extends Ihm {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 
 				System.out.println(listRobot);
-		        for (RobotImpl c : listRobot) {
-					Position newPosRobot = c.lancer();
-					c.position = newPosRobot;
-					requires().listeRobotFromEcoProxyAndRobot().updateRobot(c);
-				}
-		        frame.validate();
-		        frame.getGrille().validate();
-				
+				while (true) {
+					for (RobotImpl c : listRobot) {
+						Position newPosRobot = c.lancer();
+						c.position = newPosRobot;
+						requires().listeRobotFromEcoProxyAndRobot().updateRobot(c);
+						frame.validate();
+				        frame.getGrille().validate();
+					}
+					listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
+				}				
 			}
 			
 			@Override

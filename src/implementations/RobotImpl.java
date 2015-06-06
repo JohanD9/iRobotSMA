@@ -50,11 +50,14 @@ public class RobotImpl extends Robot{
 	protected void start() {
 		// TODO Auto-generated method stub
 		super.start();
-		/*System.out.println("START ROBOT");
-		System.out.println(this.couleur);
-		for (int i=0; i<2; i++){
-			make_actionRobotToEcoRobot().agir();
-		}*/
+		/*new Thread() {
+			public void run() {
+				while(true){
+					System.out.println(lancer());
+				}
+			}
+
+		}.start();*/
 	}
 	
 	public Position lancer() {
