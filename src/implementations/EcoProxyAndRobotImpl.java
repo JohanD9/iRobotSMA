@@ -66,7 +66,6 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 
 			@Override
 			public void removeAll() {
-				System.out.println("teeeeeest");
 				map = new HashMap<Integer, ProxyAndRobot.Component>();
 				parts().robots().robotToEcoProxyAndRobot().getRobots().clear();
 				

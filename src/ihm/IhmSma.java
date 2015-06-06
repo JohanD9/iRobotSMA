@@ -98,6 +98,11 @@ public class IhmSma extends Ihm {
 			public Grille getGrille() {
 				return frame.getGrille();
 			}
+
+			@Override
+			public ArrayList<Position> getPosNid() {
+				return posNid;
+			}
 		};
 	}
 	
@@ -152,12 +157,12 @@ public class IhmSma extends Ihm {
 			public void init() {
 				// Création des nids
 				Grille grille = frame.getGrille();
-				grille.addComposant(grille.getCasePanelTable()[6][7], 1, Type.NID, Couleur.BLUE);
-				posNid.add(new Position(6,  7));
-				grille.addComposant(grille.getCasePanelTable()[6][14], 2, Type.NID, Couleur.RED);
-				posNid.add(new Position(6,  14));
-				grille.addComposant(grille.getCasePanelTable()[6][21], 3, Type.NID, Couleur.GREEN);
-				posNid.add(new Position(6,  21));
+				grille.addComposant(grille.getCasePanelTable()[10][13], 1, Type.NID, Couleur.BLUE);
+				posNid.add(new Position(10,  13));
+				grille.addComposant(grille.getCasePanelTable()[10][25], 2, Type.NID, Couleur.RED);
+				posNid.add(new Position(10,  25));
+				grille.addComposant(grille.getCasePanelTable()[10][37], 3, Type.NID, Couleur.GREEN);
+				posNid.add(new Position(10,  37));
 				
 				int nbRobot = getNbRobot();
 				int nbBoite = getNbBoite();
