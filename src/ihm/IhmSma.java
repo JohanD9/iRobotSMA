@@ -220,6 +220,22 @@ public class IhmSma extends Ihm {
 				}
 				return p;
 			}
+
+			@Override
+			public int charger(Position pos, Type type, Couleur couleur) {
+				Grille grille = frame.getGrille();
+				Integer idToCreate = provides().creationToEspece().getNextId(type);
+				
+				//D'abord créer le composant dans la grille
+				provides().creationToEspece().createEspece(idToCreate, pos, type, couleur);
+				return idToCreate;
+			}
+
+			@Override
+			public void viderSystem() {
+				provides().creationToEspece().removeEspece();
+				
+			}
 		};
 	}
 
@@ -272,6 +288,13 @@ public class IhmSma extends Ihm {
 					b = true;
 				}
 				return b;
+			}
+
+			@Override
+			public void removeEspece() {
+				requires().listeBoiteFromEcoBoite().getBoites().clear();
+				requires().creerEcoSysFromEcoProxyAndRobot().removeAll();
+				
 			}
 		};
 	}

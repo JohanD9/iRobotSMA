@@ -24,11 +24,15 @@ public class DecisionImpl extends Decision{
 			@Override
 			public Choix decider(Position pos) {
 				ArrayList<Case> listCase = requires().perceptionRobotFromPerception().percevoir(pos);
-				Random rand = new Random();
-				Case toGo = listCase.get(rand.nextInt(listCase.size()));
-				Choix c = new Choix(ActionType.SE_DEPLACER, new Position(toGo.abscisseCase, toGo.ordonneeCase));
-				
-				return c;
+				if (listCase.size() > 0) {
+					Random rand = new Random();
+					int tmp = rand.nextInt(listCase.size());
+					Case toGo = listCase.get(tmp);
+					Choix c = new Choix(ActionType.SE_DEPLACER, new Position(toGo.abscisseCase, toGo.ordonneeCase));
+					
+					return c;
+				}
+				return null;
 			}
 		};
 	}

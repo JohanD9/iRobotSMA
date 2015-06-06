@@ -72,7 +72,8 @@ public class Case extends javax.swing.JPanel {
         }
         
         String color;
-        for (Composant composant : listComposants) {
+        for (int i = 0; i < listComposants.size(); i++) {
+        	Composant composant = listComposants.get(i);
             color = composant.getCouleur();
             if (composant.type.equals(Type.NID)) {
                 ImageIcon nidIcon = new ImageIcon(this.getClass().getResource("/resources/nid_" + color + ".png"));
