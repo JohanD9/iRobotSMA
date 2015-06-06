@@ -241,6 +241,15 @@ public class IhmSma extends Ihm {
 				provides().creationToEspece().removeEspece();
 				
 			}
+
+			@Override
+			public void oneStep() {
+				// TODO Auto-generated method stub
+				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
+				for (RobotImpl r : listRobot){
+					r.avancer();
+				}
+			}
 		};
 	}
 
