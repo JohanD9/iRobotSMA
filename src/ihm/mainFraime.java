@@ -516,11 +516,19 @@ public class MainFraime extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelPlayPauseMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    	isRunning = false;
+        ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/play.png"));
+        jLabelPlayPause.setIcon(playIcon);
+        control.pause();
         persister.saveGrilleInXmlFile();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       control.viderSystem();
+    	isRunning = false;
+        ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/play.png"));
+        jLabelPlayPause.setIcon(playIcon);
+        control.pause();
+       
     	try {
             persister.loadGrilleFromXml();
         } catch (ParserConfigurationException ex) {

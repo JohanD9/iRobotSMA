@@ -146,7 +146,8 @@ public class XmlToPersist {
             file = loadFile.getSelectedFile();
             
             if (file != null) {
-                
+            	
+            	control.viderSystem();
                 grille.clearGrille();
                 // Parsage du fichier xml
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
