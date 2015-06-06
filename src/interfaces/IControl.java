@@ -19,4 +19,5 @@ public interface IControl {
 	public void chargerEtat();
 	public Position randomPosition();
 	public void viderSystem();
+	public void oneStep();
 }

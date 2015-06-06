@@ -75,4 +75,9 @@ public class RobotImpl extends Robot{
 	public void pause (){
 		t.suspend();
 	}
+	
+	public void avancer(){
+		Position p = make_actionRobotToEcoRobot().agir(position);
+		position = p;
+	}
 }

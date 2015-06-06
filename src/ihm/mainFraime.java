@@ -501,18 +501,24 @@ public class MainFraime extends javax.swing.JFrame {
 
 
     private void jLabelPlayPauseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPlayPauseMouseReleased
-        if (isRunning) {
-            isRunning = false;
-            ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/play.png"));
-            jLabelPlayPause.setIcon(playIcon);
-            control.pause();
-        } else {
-            isRunning = true;
-            ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
-            jLabelPlayPause.setIcon(pauseIcon);
-            control.lancerSystem();
-
-        }
+    	ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/play.png"));
+    	ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
+    	if (radioButtonAuto.isSelected()){
+    		if (isRunning) {
+                isRunning = false;
+                jLabelPlayPause.setIcon(playIcon);
+                control.pause();
+            } else {
+                isRunning = true;
+                jLabelPlayPause.setIcon(pauseIcon);
+                control.lancerSystem();
+            }
+    	} else if (radioButtonPasPas.isSelected()){
+    		jLabelPlayPause.setIcon(pauseIcon);
+    		control.oneStep();
+    		jLabelPlayPause.setIcon(playIcon);
+    	}
+        
     }//GEN-LAST:event_jLabelPlayPauseMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
