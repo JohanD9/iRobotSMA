@@ -133,13 +133,19 @@ public class IhmSma extends Ihm {
 			@Override
 			public void pause() {
 				// TODO Auto-generated method stub
+				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
+				for (RobotImpl r : listRobot){
+					r.pause();
+				}
 				
 			}
 			
 			@Override
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-				System.out.println(listRobot);
+				for (RobotImpl r : listRobot){
+					r.lancer();
+				}
 			}
 			
 			@Override
@@ -279,7 +285,6 @@ public class IhmSma extends Ihm {
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         posNid = new ArrayList<Position>();
-		System.out.println("FRAME START");
 	}
     
 }

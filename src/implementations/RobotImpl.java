@@ -14,6 +14,8 @@ public class RobotImpl extends Robot{
 	public Position position;
 	public Type type;
 	public Couleur couleur;
+	public Thread t;
+	public boolean isRunning = false;
 	
 	public RobotImpl (Integer id, Position pos, Type type, Couleur color){
 		this.id = id;
@@ -46,28 +48,31 @@ public class RobotImpl extends Robot{
 		return parts().action().actionRobotToRobot();
 	}
 	
-	@Override
-	protected void start() {
-		// TODO Auto-generated method stub
-		super.start();
-
-		new Thread() {
-			public void run() {
-				while (true) {
-					Position p = lancer();
-					position = p;
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+	public void lancer() {
+		if (!isRunning){
+			t = new Thread() {
+				public void run() {
+					while (true) {
+						Position p = make_actionRobotToEcoRobot().agir(position);
+						position = p;
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
-			}
-		}.start();
+			};
+			t.start();
+			isRunning = true;
+		} else {
+			//reveiller le thread
+			t.resume();
+		}
 	}
 	
-	public Position lancer() {
-		return make_actionRobotToEcoRobot().agir(position);
+	public void pause (){
+		t.suspend();
 	}
 }

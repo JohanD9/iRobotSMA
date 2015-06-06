@@ -16,8 +16,8 @@ public class ThreadRobot  implements Runnable{
 
 	@Override
 	public void run() {
-		Position newPosRobot = robot.lancer();
-		robot.position = newPosRobot;	
+		/*Position newPosRobot = robot.lancer();
+		robot.position = newPosRobot;	*/
 	}
 
 

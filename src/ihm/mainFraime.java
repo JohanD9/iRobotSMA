@@ -505,6 +505,7 @@ public class MainFraime extends javax.swing.JFrame {
             isRunning = false;
             ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/play.png"));
             jLabelPlayPause.setIcon(playIcon);
+            control.pause();
         } else {
             isRunning = true;
             ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
