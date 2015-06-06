@@ -50,14 +50,21 @@ public class RobotImpl extends Robot{
 	protected void start() {
 		// TODO Auto-generated method stub
 		super.start();
-		/*new Thread() {
+
+		new Thread() {
 			public void run() {
-				while(true){
-					System.out.println(lancer());
+				while (true) {
+					Position p = lancer();
+					position = p;
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
-
-		}.start();*/
+		}.start();
 	}
 	
 	public Position lancer() {

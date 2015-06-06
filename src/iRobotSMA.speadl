@@ -10,6 +10,10 @@ import interfaces.IDecisionRobot
 import interfaces.IInfos
 import interfaces.IPerceptionRobot
 import interfaces.IRobot
+<<<<<<< HEAD
+=======
+import interfaces.IUpdateRobot
+>>>>>>> eb1e1b9d99c84fb7e1f13f5d5263b02ff01b1ae9
 
 namespace iRobotSMA {
 	
