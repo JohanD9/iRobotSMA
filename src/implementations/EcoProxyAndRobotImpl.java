@@ -60,7 +60,7 @@ public class EcoProxyAndRobotImpl extends EcoProxyAndRobot{
 					ProxyAndRobot.Component par = newProxyAndRobot(id, pos, type, couleur) ;
 					map.put(id, par);
 				} else {
-					System.out.println("ELSE");
+					System.out.println("DEJA DANS LA MAP");
 				}
 			}
 		};

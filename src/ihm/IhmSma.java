@@ -5,23 +5,16 @@
  */
 package ihm;
 
-import iRobotSMA.EcoProxy;
-import iRobotSMA.EcoProxyAndRobot;
-import iRobotSMA.EcoProxyAndRobot.ProxyAndRobot;
-import iRobotSMA.EcoRobot;
 import iRobotSMA.Ihm;
 import implementations.BoiteImpl;
 import implementations.RobotImpl;
 import interfaces.IControl;
 import interfaces.ICreationEcosystem;
 import interfaces.IInfos;
-import interfaces.IRobot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.swing.SwingUtilities;
 
 
 /**
@@ -49,31 +42,54 @@ public class IhmSma extends Ihm {
 				Case c = frame.getGrille().getCasePanelTable()[x][y];
 				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
-				
-				
-				if ((x-1 >= 0) && (x-1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y-1]);
+				Case tmp = null;
+				if ((x-1 >= 0) && (x-1 < 50) && (y-1 >= 0) && (y-1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y-1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x-1 >= 0) && (x-1 < 49) && (y >= 0) && (y < 49)) {
-					tourCase.add((frame.getGrille().getCasePanelTable()[x-1][y]));
+				if ((x-1 >= 0) && (x-1 < 50) && (y >= 0) && (y < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x-1 >= 0) && (x-1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y+1]);
+				if ((x-1 >= 0) && (x-1 < 50) && (y+1 >= 0) && (y+1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y+1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x >= 0) && (x < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x][y-1]);
+				if ((x >= 0) && (x < 50) && (y-1 >= 0) && (y-1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x][y-1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x >= 0) && (x < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x][y+1]);
+				if ((x >= 0) && (x < 50) && (y+1 >= 0) && (y+1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x][y+1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y-1]);
+				if ((x+1 >= 0) && (x+1 < 50) && (y-1 >= 0) && (y-1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y-1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y >= 0) && (y < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y]);
+				if ((x+1 >= 0) && (x+1 < 50) && (y >= 0) && (y < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
-				if ((x+1 >= 0) && (x+1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y+1]);
+				if ((x+1 >= 0) && (x+1 < 50) && (y+1 >= 0) && (y+1 < 50)) {
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y+1];
+					if (isEmptyOrOnlyBoite(tmp)) {
+						tourCase.add(tmp);
+					}
 				}
 				return tourCase;
 			}
@@ -83,6 +99,18 @@ public class IhmSma extends Ihm {
 				return frame.getGrille();
 			}
 		};
+	}
+	
+	public boolean isEmptyOrOnlyBoite(Case c) {
+		if (c.listComposants.size() == 0) {
+			return true;
+		}
+		if (c.listComposants.size() == 1) {
+			if (c.listComposants.get(0).type == Type.BOITE) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -129,34 +157,25 @@ public class IhmSma extends Ihm {
 				int nbBoite = getNbBoite();
 				
 				Position pos;
+				Integer idToCreate;
 				for (int i = 0; i < nbRobot; i++) {
+					idToCreate = provides().creationToEspece().getNextId(Type.ROBOT);
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					provides().creationToEspece().createEspece(pos, Type.ROBOT, c);
+					//D'abord créer le composant dans la grille
+					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], idToCreate, Type.ROBOT, c, pos);
+					provides().creationToEspece().createEspece(idToCreate, pos, Type.ROBOT, c);
 				}
 				
 				for (int i = 0; i < nbBoite; i++) {
+					idToCreate = provides().creationToEspece().getNextId(Type.BOITE);
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					provides().creationToEspece().createEspece(pos, Type.BOITE, c);
+					grille.addComposant(grille.getCasePanelTable()[pos.getX()][pos.getY()], idToCreate, Type.BOITE, c, pos);
+					provides().creationToEspece().createEspece(idToCreate, pos, Type.BOITE, c);
 				}
-
-				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
-				for (RobotImpl c : listRobot) {
-					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
-				}
-				
-				
-				List<BoiteImpl> listBoite = requires().listeBoiteFromEcoBoite().getBoites();
-				for(BoiteImpl b : listBoite) {
-					grille.addComposant(grille.getCasePanelTable()[b.position.getX()][b.position.getY()], b.id, b.type, b.couleur);
-				}
-				
-				
-				
-				
 			}
 			
 			@Override
@@ -234,18 +253,15 @@ public class IhmSma extends Ihm {
 			}
 			
 			@Override
-			public boolean createEspece(Position pos, Type type, Couleur couleur) {
+			public boolean createEspece(Integer id, Position pos, Type type, Couleur couleur) {
 				// TODO Auto-generated method stub
-				Integer idToCreate;
 				boolean b = false;
 				
 				if (Type.ROBOT == type){
-					idToCreate = getNextId(type);
-					requires().creerEcoSysFromEcoProxyAndRobot().create(idToCreate, pos, couleur, type);
+					requires().creerEcoSysFromEcoProxyAndRobot().create(id, pos, couleur, type);
 					b = true;
 				} else if (Type.BOITE == type){
-					idToCreate = getNextId(type);
-					BoiteImpl boite = new BoiteImpl(idToCreate, pos, couleur, type);	
+					BoiteImpl boite = new BoiteImpl(id, pos, couleur, type);	
 					requires().listeBoiteFromEcoBoite().getBoites().add(boite);
 					b = true;
 				}

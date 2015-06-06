@@ -79,6 +79,11 @@ public class Grille extends javax.swing.JPanel {
         c.addComposant(composantToAdd);
     }
     
+    public void addComposant(Case c, int id, Type type, Couleur couleur, Position position) {
+        Composant composantToAdd = new Composant(id, type, couleur, position);
+        c.addComposant(composantToAdd);
+    }
+    
     public void removeComposant(Case c, int id, Type type, Couleur couleur) {
         Composant composantToRemove = new Composant(id, type, couleur);
         c.removeComposant(composantToRemove);

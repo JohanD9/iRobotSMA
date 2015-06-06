@@ -29,8 +29,6 @@ public class ActionImpl extends Action{
 				Case currentCase = g.getCasePanelTable()[pos.getX()][pos.getY()];
 				
 				ArrayList<Composant> tmpList = currentCase.listComposants;
-				
-				System.out.println(currentCase.listComposants);
 				for (int i = 0; i < tmpList.size(); i++) {
 					Composant comp = tmpList.get(i);
 					g.move(comp.id, comp.type, comp.couleur, pos.getX(), pos.getY(), ch.position.getX(), ch.position.getY());

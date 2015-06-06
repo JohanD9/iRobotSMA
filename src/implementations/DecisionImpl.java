@@ -26,7 +26,6 @@ public class DecisionImpl extends Decision{
 				ArrayList<Case> listCase = requires().perceptionRobotFromPerception().percevoir(pos);
 				Random rand = new Random();
 				Case toGo = listCase.get(rand.nextInt(listCase.size()));
-				System.out.println();
 				Choix c = new Choix(ActionType.SE_DEPLACER, new Position(toGo.abscisseCase, toGo.ordonneeCase));
 				
 				return c;
