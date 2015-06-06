@@ -26,6 +26,9 @@ public class IhmSma extends Ihm {
 
 	public MainFraime frame;
 	ArrayList<Position> posNid;
+	
+	Integer idRobot = 0;
+	Integer idBoite = 0;
 
 	@Override
 	protected IInfos make_infosFromIhm() {
@@ -41,30 +44,54 @@ public class IhmSma extends Ihm {
 				ArrayList<Case> tourCase = new ArrayList<Case>();
 				
 				
-				
+				Case tmp = null;
 				if ((x-1 >= 0) && (x-1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y-1]);
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y-1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x-1 >= 0) && (x-1 < 49) && (y >= 0) && (y < 49)) {
-					tourCase.add((frame.getGrille().getCasePanelTable()[x-1][y]));
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x-1 >= 0) && (x-1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x-1][y+1]);
+					tmp = frame.getGrille().getCasePanelTable()[x-1][y+1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x >= 0) && (x < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x][y-1]);
+					tmp = frame.getGrille().getCasePanelTable()[x][y-1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x >= 0) && (x < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x][y+1]);
+					tmp = frame.getGrille().getCasePanelTable()[x][y+1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x+1 >= 0) && (x+1 < 49) && (y-1 >= 0) && (y-1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y-1]);
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y-1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x+1 >= 0) && (x+1 < 49) && (y >= 0) && (y < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y]);
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				if ((x+1 >= 0) && (x+1 < 49) && (y+1 >= 0) && (y+1 < 49)) {
-					tourCase.add(frame.getGrille().getCasePanelTable()[x+1][y+1]);
+					tmp = frame.getGrille().getCasePanelTable()[x+1][y+1];
+					if (isEmptyOrOnlyBoite(c)) {
+						tourCase.add(tmp);
+					}
 				}
 				return tourCase;
 			}
@@ -72,6 +99,18 @@ public class IhmSma extends Ihm {
 			@Override
 			public Grille getGrille() {
 				return frame.getGrille();
+			}
+			
+			public boolean isEmptyOrOnlyBoite(Case c) {
+				if (c.listComposants.size() == 0) {
+					return true;
+				}
+				if (c.listComposants.size() == 1) {
+					if (c.listComposants.get(0).type == Type.BOITE) {
+						return true;
+					}
+				}
+				return false;
 			}
 		};
 	}
