@@ -26,17 +26,6 @@ public class IhmSma extends Ihm {
 
 	public MainFraime frame;
 	ArrayList<Position> posNid;
-	
-	
-
-	public IhmSma() {
-		super();
-		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
-		frame = new MainFraime(this);
-		frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        posNid = new ArrayList<Position>();
-	}
 
 	@Override
 	protected IInfos make_infosFromIhm() {
@@ -114,15 +103,7 @@ public class IhmSma extends Ihm {
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 				System.out.println(listRobot);
-		        for (RobotImpl c : listRobot) {
-					Position newPosRobot = c.lancer();
-					c.position = newPosRobot;
-					requires().listeRobotFromEcoProxyAndRobot().updateRobot(c);
-				}
-		        frame.validate();
-		        frame.getGrille().validate();
-
-				
+		        
 			}
 			
 			@Override
@@ -206,6 +187,18 @@ public class IhmSma extends Ihm {
 				return p;
 			}
 		};
+	}
+	
+	@Override
+	protected void start() {
+		// TODO Auto-generated method stub
+		super.start();
+		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+		frame = new MainFraime(provides().controlToEnv());
+		frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        posNid = new ArrayList<Position>();
+		System.out.println("FRAME START");
 	}
     
 }

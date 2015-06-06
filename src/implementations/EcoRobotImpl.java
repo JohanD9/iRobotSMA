@@ -17,7 +17,7 @@ public class EcoRobotImpl extends EcoRobot{
 	protected Robot make_Robot(Integer id, Position pos, Type type, Couleur color) {
 		// TODO Auto-generated method stub
 		RobotImpl r = new RobotImpl(id, pos, type, color);
-		robotListe.add(r);
+		robotListe.add(r);		
 		return r;
 	}
 

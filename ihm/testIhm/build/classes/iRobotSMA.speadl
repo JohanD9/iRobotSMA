@@ -2,13 +2,14 @@ import ihm.Couleur
 import ihm.Position
 import ihm.Type
 import interfaces.IActionRobot
+import interfaces.IBoite
 import interfaces.IControl
 import interfaces.ICreationEcosystem
 import interfaces.IDecisionRobot
 import interfaces.IInfos
 import interfaces.IPerceptionRobot
 import interfaces.IRobot
-import interfaces.IBoite
+import interfaces.IUpdateRobot
 
 namespace iRobotSMA {
 	

@@ -1,9 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+j * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package ihm;
+
+import interfaces.IControl;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,19 +35,18 @@ public class MainFraime extends javax.swing.JFrame {
     public int colonne = 50;
     public int robot = 0;
     public int boite = 0;
-    public IhmSma ihm;
+    public IControl control;
     
     private boolean isRunning = false;
     private XmlToPersist persister;
     /**
      * Creates new form mainFraime
      */
-    public MainFraime(IhmSma ihm) {
-    	this.ihm = ihm;
-        initComponents();
-        
+    
+    public MainFraime(IControl ctrl){
+    	control = ctrl;
+    	initComponents();
         myInitComponents();
-        
         pack();
     }
 
@@ -479,7 +480,7 @@ public class MainFraime extends javax.swing.JFrame {
         
         //lancer la creation de robot via l'ihm
         //System.out.println(nbRobots + " " + nbBoites);
-        ihm.make_controlToEnv().init();
+        control.init();
         
         
     }//GEN-LAST:event_jButtonAddRobotActionPerformed
@@ -508,7 +509,7 @@ public class MainFraime extends javax.swing.JFrame {
             isRunning = true;
             ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
             jLabelPlayPause.setIcon(pauseIcon);
-            ihm.make_controlToEnv().lancerSystem();
+            control.lancerSystem();
         }
     }//GEN-LAST:event_jLabelPlayPauseMouseReleased
 
@@ -540,7 +541,7 @@ public class MainFraime extends javax.swing.JFrame {
         return jLabelComposantsCase;
     }
 
-    public Grille getGrille() {
+    public synchronized Grille getGrille() {
         return grille;
     }
 

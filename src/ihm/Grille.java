@@ -110,6 +110,8 @@ public class Grille extends javax.swing.JPanel {
         
         removeComposant(cOld, idComposant, type, couleur);
         addComposant(cNew, idComposant, type, couleur);
+        System.out.println("ANCIENNES " + cOld.toString());
+        System.out.println("NOUVELLES " + cNew.toString());
         //cNew.addComposant(toMove);
         validate();
     }
