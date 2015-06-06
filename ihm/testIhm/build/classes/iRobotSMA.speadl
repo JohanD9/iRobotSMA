@@ -75,10 +75,11 @@ namespace iRobotSMA {
 		part proxys : EcoProxy {
 			bind infosFromEcoProxyAndRobot to infosFromIhm
 		}
-		part robots : EcoRobot
+		part robots : EcoRobot 
 		
 		species ProxyAndRobot(id: Integer, pos:Position, type: Type, color: Couleur) {
-			use proxy : proxys.Proxy(id)
+			use proxy : proxys.Proxy(id) {
+			}
 			use robot : robots.Robot(id, pos, type, color) {
 				bind infosFromProxy to proxy.infosToRobot
 			}

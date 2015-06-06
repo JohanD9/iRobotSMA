@@ -23,7 +23,7 @@ import java.util.Random;
  */
 public class IhmSma extends Ihm {
 
-	public MainFraime frame;
+	public mainFraime frame;
 	ArrayList<Position> posNid;
 
 	Integer idRobot = 0;
@@ -318,7 +318,7 @@ public class IhmSma extends Ihm {
 		// TODO Auto-generated method stub
 		super.start();
 		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
-		frame = new MainFraime(provides().controlToEnv());
+		frame = new mainFraime(provides().controlToEnv());
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         posNid = new ArrayList<Position>();

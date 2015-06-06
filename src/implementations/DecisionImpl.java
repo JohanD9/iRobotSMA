@@ -57,16 +57,31 @@ public class DecisionImpl extends Decision{
 				int x = c.abscisseCase;
 				int y = c.ordonneeCase;
 				
-				allCases.add(g.getCasePanelTable()[x-1][y-1]);
-				allCases.add(g.getCasePanelTable()[x-1][y]);
-				allCases.add(g.getCasePanelTable()[x-1][y+1]);
-				allCases.add(g.getCasePanelTable()[x][y-1]);
-				allCases.add(g.getCasePanelTable()[x][y+1]);
-				allCases.add(g.getCasePanelTable()[x+1][y-1]);
-				allCases.add(g.getCasePanelTable()[x+1][y]);
-				allCases.add(g.getCasePanelTable()[x+1][y+1]);
-				
-				
+				if (!g.getCasePanelTable()[x-1][y-1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x-1][y-1]);
+				}
+				if (!g.getCasePanelTable()[x-1][y].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x-1][y]);
+				}
+				if (!g.getCasePanelTable()[x-1][y+1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x-1][y+1]);
+				}
+				if (!g.getCasePanelTable()[x][y-1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x][y-1]);
+				}
+				if (!g.getCasePanelTable()[x][y+1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x][y+1]);
+				}
+				if (!g.getCasePanelTable()[x+1][y-1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x+1][y-1]);
+				}
+				if (!g.getCasePanelTable()[x+1][y].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x+1][y]);
+				}
+				if (!g.getCasePanelTable()[x+1][y+1].hasNid()) {
+					allCases.add(g.getCasePanelTable()[x+1][y+1]);
+				}
+							
 				return allCases;
 			}
 			

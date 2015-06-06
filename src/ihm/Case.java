@@ -179,6 +179,15 @@ public class Case extends javax.swing.JPanel {
     	return false;
     }
     
+    public Boolean hasNid() {
+    	for (Composant c : listComposants) {
+    		if (c.type == Type.NID) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
     public Composant removeBoite() {
     	for (Composant c : listComposants) {
     		if (c.type == Type.BOITE) {

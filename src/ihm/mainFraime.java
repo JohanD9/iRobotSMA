@@ -29,7 +29,7 @@ import org.xml.sax.SAXException;
  * @author jdebat
  */
 
-public class MainFraime extends javax.swing.JFrame {
+public class mainFraime extends javax.swing.JFrame {
     private Grille grille;
     public int ligne = 50;
     public int colonne = 50;
@@ -43,7 +43,7 @@ public class MainFraime extends javax.swing.JFrame {
      * Creates new form mainFraime
      */
     
-    public MainFraime(IControl ctrl){
+    public mainFraime(IControl ctrl){
     	control = ctrl;
     	initComponents();
         myInitComponents();
@@ -538,11 +538,11 @@ public class MainFraime extends javax.swing.JFrame {
     	try {
             persister.loadGrilleFromXml();
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
-            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(MainFraime.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mainFraime.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -585,13 +585,13 @@ public class MainFraime extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(mainFraime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
