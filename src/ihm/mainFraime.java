@@ -510,6 +510,7 @@ public class MainFraime extends javax.swing.JFrame {
             ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/pause.png"));
             jLabelPlayPause.setIcon(pauseIcon);
             control.lancerSystem();
+
         }
     }//GEN-LAST:event_jLabelPlayPauseMouseReleased
 

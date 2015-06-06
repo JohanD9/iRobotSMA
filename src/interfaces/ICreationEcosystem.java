@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ICreationEcosystem {
 	public boolean createEspece(Position pos, Type type, Couleur couleur);
-	public Integer getNextId();
-	public List<Composant> listerEspece();
+	public Integer getNextId(Type type);
+	public List<Composant> listerEspece(List<?> listEspece);
 }

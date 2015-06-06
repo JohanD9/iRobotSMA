@@ -4,7 +4,6 @@ import iRobotSMA.Decision;
 import ihm.ActionType;
 import ihm.Case;
 import ihm.Choix;
-import ihm.Couleur;
 import ihm.Position;
 import interfaces.IDecisionRobot;
 

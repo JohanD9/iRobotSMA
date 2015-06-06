@@ -50,6 +50,7 @@ public class RobotImpl extends Robot{
 	protected void start() {
 		// TODO Auto-generated method stub
 		super.start();
+
 		new Thread() {
 			public void run() {
 				while (true) {

@@ -5,11 +5,17 @@
  */
 package ihm;
 
+import iRobotSMA.EcoProxy;
+import iRobotSMA.EcoProxyAndRobot;
+import iRobotSMA.EcoProxyAndRobot.ProxyAndRobot;
+import iRobotSMA.EcoRobot;
 import iRobotSMA.Ihm;
 import implementations.BoiteImpl;
 import implementations.RobotImpl;
 import interfaces.IControl;
+import interfaces.ICreationEcosystem;
 import interfaces.IInfos;
+import interfaces.IRobot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,9 @@ public class IhmSma extends Ihm {
 	public MainFraime frame;
 	ArrayList<Position> posNid;
 	
+	Integer idRobot = 0;
+	Integer idBoite = 0;
+
 	Integer idRobot = 0;
 	Integer idBoite = 0;
 
@@ -142,7 +151,6 @@ public class IhmSma extends Ihm {
 			public void lancerSystem() {
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 				System.out.println(listRobot);
-		        
 			}
 			
 			@Override
@@ -164,20 +172,21 @@ public class IhmSma extends Ihm {
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.ROBOT, c);
+					provides().creationToEspece().createEspece(pos, Type.ROBOT, c);
 				}
 				
 				for (int i = 0; i < nbBoite; i++) {
 					pos = randomPosition();
 					Random rand = new Random();
 					Couleur c = Couleur.values()[rand.nextInt(Couleur.values().length)];
-					requires().creationEcosystemFromEcoProxyAndRobot().createEspece(pos, Type.BOITE, c);
+					provides().creationToEspece().createEspece(pos, Type.BOITE, c);
 				}
 
 				List<RobotImpl> listRobot = requires().listeRobotFromEcoProxyAndRobot().getRobots();
 				for (RobotImpl c : listRobot) {
 					grille.addComposant(grille.getCasePanelTable()[c.position.getX()][c.position.getY()], c.id, c.type, c.couleur);
 				}
+				
 				
 				List<BoiteImpl> listBoite = requires().listeBoiteFromEcoBoite().getBoites();
 				for(BoiteImpl b : listBoite) {
@@ -227,7 +236,63 @@ public class IhmSma extends Ihm {
 			}
 		};
 	}
-	
+
+	@Override
+	protected ICreationEcosystem make_creationToEspece() {
+		// TODO Auto-generated method stub
+		return new ICreationEcosystem() {
+			
+			@Override
+			public List<Composant> listerEspece(List<?> listEspece) {
+				// TODO Auto-generated method stub
+				List<Composant> listEsp = new ArrayList<Composant>();
+				Composant c;
+				
+				System.out.println(listEspece.getClass());
+				return listEsp;
+			}
+			
+			@Override
+			public Integer getNextId(Type type) {
+				// TODO Auto-generated method stub
+				Integer idToReturn = 0;
+				
+				if (Type.ROBOT == type){
+					synchronized (idRobot) {
+						idToReturn = idRobot;
+						idRobot ++;
+					}
+				} else if (Type.BOITE == type) {
+					synchronized (idBoite) {
+						idToReturn = idBoite;
+						idBoite ++;
+					}
+				}
+				
+				return idToReturn;
+			}
+			
+			@Override
+			public boolean createEspece(Position pos, Type type, Couleur couleur) {
+				// TODO Auto-generated method stub
+				Integer idToCreate;
+				boolean b = false;
+				
+				if (Type.ROBOT == type){
+					idToCreate = getNextId(type);
+					requires().creerEcoSysFromEcoProxyAndRobot().create(idToCreate, pos, couleur, type);
+					b = true;
+				} else if (Type.BOITE == type){
+					idToCreate = getNextId(type);
+					BoiteImpl boite = new BoiteImpl(idToCreate, pos, couleur, type);	
+					requires().listeBoiteFromEcoBoite().getBoites().add(boite);
+					b = true;
+				}
+				return b;
+			}
+		};
+	}
+
 	@Override
 	protected void start() {
 		// TODO Auto-generated method stub
